@@ -10,9 +10,16 @@ export default class App extends React.Component {
     this.addBudget = this.addBudget.bind(this)
   }
   addBudget(newUser) {
-    const user1 = Object.assign({}, newUser)
-    const user = [...this.state.user, user1]
-    this.setState({ user })
+    const req = {
+      method: 'POST',
+      body: JSON.stringify(newUser),
+      headers: { 'Content-Type': 'application/json' }
+    }
+    return fetch('/users', req)
+      .then(res => res.json())
+      .then(addedUser => this.setState({
+        user: [...this.state.user, addedUser]
+      }))
   }
   componentDidMount() {
     fetch('/users')
