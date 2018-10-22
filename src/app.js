@@ -7,10 +7,16 @@ export default class App extends React.Component {
     this.state = {
       users: []
     }
+    this.addBudget = this.addBudget.bind(this)
+  }
+  addBudget(newUser) {
+    const user = Object.assign({}, newUser)
+    const users = [...this.state.users, user]
+    this.setState({ users })
   }
   render() {
     return (
-      <CalorieForm/>
+      <CalorieForm onSubmit={this.addBudget}/>
     )
   }
 }

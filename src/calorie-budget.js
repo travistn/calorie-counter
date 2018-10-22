@@ -12,15 +12,15 @@ export default class CalorieForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
   handleChange(event) {
-    const { value } = event.target
+    const form = event.target
     this.setState({
-      weight: value,
-      calories: value
+      [form.name]: form.value
     })
   }
   handleSubmit(event) {
     event.preventDefault()
     const user = Object.assign({}, this.state)
+    this.props.onSubmit(user)
   }
   render() {
     const { value } = this.state
