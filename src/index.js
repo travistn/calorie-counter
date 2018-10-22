@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import CalorieForm from './calorie-budget'
+import App from './calorie-budget'
 
 ReactDOM.render(
-  <CalorieForm/>,
+  <App/>,
   document.getElementById('root')
 )
