@@ -4,24 +4,20 @@ import CalorieForm from './calorie-budget'
 export default class App extends React.Component {
   constructor(props) {
     super(props)
-    const stateJson = localStorage.getItem('calorie-app-state')
-    const appState = JSON.parse(stateJson) || {}
     this.state = {
-      users: appState.users || []
+      user: []
     }
     this.addBudget = this.addBudget.bind(this)
   }
   addBudget(newUser) {
-    const user = Object.assign({}, newUser)
-    const users = [...this.state.users, user]
-    this.setState({ users })
+    const user1 = Object.assign({}, newUser)
+    const user = [...this.state.user, user1]
+    this.setState({ user })
   }
   componentDidMount() {
-    window.addEventListener('beforeunload', () => {
-      const { users } = this.state
-      const stateJson = JSON.stringify({ users })
-      localStorage.setItem('calorie-app-state', stateJson)
-    })
+    fetch('/users')
+      .then(res => res.json())
+      .then(user => this.setState({ user }))
   }
   render() {
     return (
