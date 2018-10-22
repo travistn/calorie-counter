@@ -1,5 +1,8 @@
 import React from 'react'
-import { Container, Form, FormGroup, Input, Button } from 'reactstrap'
+import { Form, FormGroup, Input, Button } from 'reactstrap'
+import Grid from '@material-ui/core/Grid'
+import FormHelperText from '@material-ui/core/FormHelperText'
+import TextField from '@material-ui/core/TextField'
 
 export default class CalorieForm extends React.Component {
   constructor(props) {
@@ -14,7 +17,7 @@ export default class CalorieForm extends React.Component {
   handleChange(event) {
     const form = event.target
     this.setState({
-      [form.name]: form.value
+      [form.name]: parseInt(form.value, 10)
     })
   }
   handleSubmit(event) {
@@ -25,30 +28,41 @@ export default class CalorieForm extends React.Component {
   render() {
     const { value } = this.state
     return (
-      <Container className="d-flex justify-content-center">
-        <Form onSubmit={this.handleSubmit}>
-          <h2>The basics</h2>
+      <Grid
+        container
+        direction="column"
+        justify="flex-start"
+        alignItems="center">
+        <Form
+          onSubmit={this.handleSubmit}
+          className="mt-5">
+          <h2 className="text-center">The basics</h2>
           <FormGroup>
-            <Input
+            <TextField
               name="weight"
-              placeholder="Your weight"
-              className="text-center"
+              label="Your weight"
+              className="classes.textField mt-5"
+              margin="normal"
               onChange={this.handleChange}
-              value={value}></Input>
+              value={value}/>
+              <FormHelperText>Required*</FormHelperText>
           </FormGroup>
           <FormGroup>
-            <Input
+            <TextField
               name="calories"
-              placeholder="Calorie budget per day"
-              className="text-center"
+              label="Calories per day"
+              className="classes.textField"
+              margin="normal"
+              type="number"
               onChange={this.handleChange}
-              value={value}></Input>
+              value={value}/>
+            <FormHelperText>Required*</FormHelperText>
           </FormGroup>
-          <div className="text-center">
-            <Button>Let's get started!</Button>
+          <div className="mt-4 w-100">
+            <Button color="secondary">Let's get started!</Button>
           </div>
         </Form>
-      </Container>
+      </Grid>
     )
   }
 }
