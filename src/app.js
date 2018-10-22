@@ -14,6 +14,13 @@ export default class App extends React.Component {
     const users = [...this.state.users, user]
     this.setState({ users })
   }
+  componentDidMount() {
+    window.addEventListener('beforeunload', () => {
+      const { user } = this.state
+      const stateJson = JSON.stringify({ user })
+      localStorage.setItem('calorie-app-state', stateJson)
+    })
+  }
   render() {
     return (
       <CalorieForm onSubmit={this.addBudget}/>
