@@ -28,7 +28,8 @@ export default class App extends React.Component {
     const { path } = this.state.view
     switch (path) {
       default:
-        return <Home user={this.state.user.length} onSubmit={this.addBudget}/>
+        const user = this.state.user.map(user => user.calories)
+        return <Home user={this.state.user.length} onSubmit={this.addBudget} goal={user}/>
     }
   }
   componentDidMount() {

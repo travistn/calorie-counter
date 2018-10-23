@@ -24,24 +24,25 @@ export default class Home extends React.Component {
           justify="center"
           alignItems="center">
           <div className="mt-5">
-            <Card body className="shadow sm text-center m-4">
-              <CardTitle className="h6">Add Breakfast
-                <i className="fa fa-plus-circle ml-2" style={styles.icon}></i>
+            <p className="float-right">Goal: {this.props.goal} cal</p>
+            <Card body className="shadow sm m-4 w-100">
+              <CardTitle className="h6">🥞 Add Breakfast
+                <i className="fa fa-plus-circle float-right" style={styles.icon}></i>
               </CardTitle>
             </Card>
-            <Card body className="shadow sm text-center m-4">
-              <CardTitle className="h6">Add Lunch
-                <i className="fa fa-plus-circle ml-2" style={styles.icon}></i>
+            <Card body className="shadow sm m-4 w-100">
+              <CardTitle className="h6">🥪 Add Lunch
+                <i className="fa fa-plus-circle float-right" style={styles.icon}></i>
               </CardTitle>
             </Card>
-            <Card body className="shadow sm text-center m-4">
-              <CardTitle className="h6">Add Dinner
-                <i className="fa fa-plus-circle ml-2" style={styles.icon}></i>
+            <Card body className="shadow sm m-4 w-100">
+              <CardTitle className="h6">🥩 Add Dinner
+                <i className="fa fa-plus-circle float-right" style={styles.icon}></i>
               </CardTitle>
             </Card>
-            <Card body className="shadow sm text-center m-4">
-              <CardTitle className="h6">Add Snacks
-                <i className="fa fa-plus-circle ml-2" style={styles.icon}></i>
+            <Card body className="shadow sm m-4 w-100">
+              <CardTitle className="h6">🍪 Add Snacks
+                <i className="fa fa-plus-circle float-right" style={styles.icon}></i>
               </CardTitle>
             </Card>
           </div>
