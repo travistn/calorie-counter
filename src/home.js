@@ -5,7 +5,8 @@ import { Card, CardTitle } from 'reactstrap'
 
 const styles = {
   icon: {
-    color: '#78C1AD'
+    color: '#78C1AD',
+    cursor: 'pointer'
   }
 }
 
@@ -27,22 +28,30 @@ export default class Home extends React.Component {
             <p className="float-right">Goal: {this.props.goal} cal</p>
             <Card body className="shadow sm m-4 w-100">
               <CardTitle className="h6">🥞 Add Breakfast
-                <i className="fa fa-plus-circle float-right" style={styles.icon}></i>
+                <a href="#breakfast">
+                  <i className="fa fa-plus-circle float-right" style={styles.icon}></i>
+                </a>
               </CardTitle>
             </Card>
             <Card body className="shadow sm m-4 w-100">
               <CardTitle className="h6">🥪 Add Lunch
-                <i className="fa fa-plus-circle float-right" style={styles.icon}></i>
+                <a href="#lunch">
+                  <i className="fa fa-plus-circle float-right" style={styles.icon}></i>
+                </a>
               </CardTitle>
             </Card>
             <Card body className="shadow sm m-4 w-100">
               <CardTitle className="h6">🥩 Add Dinner
-                <i className="fa fa-plus-circle float-right" style={styles.icon}></i>
+                <a href="#dinner">
+                  <i className="fa fa-plus-circle float-right" style={styles.icon}></i>
+                </a>
               </CardTitle>
             </Card>
             <Card body className="shadow sm m-4 w-100">
               <CardTitle className="h6">🍪 Add Snacks
-                <i className="fa fa-plus-circle float-right" style={styles.icon}></i>
+                <a href="#snacks">
+                  <i className="fa fa-plus-circle float-right" style={styles.icon}></i>
+                </a>
               </CardTitle>
             </Card>
           </div>
