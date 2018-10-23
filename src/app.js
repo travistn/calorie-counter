@@ -1,6 +1,6 @@
 import React from 'react'
 import hash from './hash'
-import CalorieForm from './calorie-budget'
+import Home from './home'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -24,6 +24,13 @@ export default class App extends React.Component {
         user: [...this.state.user, addedUser]
       }))
   }
+  renderView() {
+    const { path } = this.state.view
+    switch (path) {
+      default:
+        return <Home user={this.state.user.length} onSubmit={this.addBudget}/>
+    }
+  }
   componentDidMount() {
     window.addEventListener('hashchange', () => {
       const { path } = hash.parse(location.hash)
@@ -37,7 +44,9 @@ export default class App extends React.Component {
   }
   render() {
     return (
-      <CalorieForm onSubmit={this.addBudget}/>
+      <div>
+        {this.renderView()}
+      </div>
     )
   }
 }
