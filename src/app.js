@@ -1,11 +1,14 @@
 import React from 'react'
+import hash from './hash'
 import CalorieForm from './calorie-budget'
 
 export default class App extends React.Component {
   constructor(props) {
     super(props)
+    const { path } = hash.parse(location.hash)
     this.state = {
-      user: []
+      user: [],
+      view: path
     }
     this.addBudget = this.addBudget.bind(this)
   }
@@ -22,6 +25,12 @@ export default class App extends React.Component {
       }))
   }
   componentDidMount() {
+    window.addEventListener('hashchange', () => {
+      const { path } = hash.parse(location.hash)
+      this.setState({
+        view: path
+      })
+    })
     fetch('/users')
       .then(res => res.json())
       .then(user => this.setState({ user }))
