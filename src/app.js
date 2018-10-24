@@ -41,14 +41,8 @@ export default class App extends React.Component {
   renderView() {
     const { path } = this.state.view
     switch (path) {
-      case 'breakfast':
-        return <FoodItem meal={'Breakfast'} onSubmit={this.addFoodItem} mealType={'breakfast'}/>
-      case 'lunch':
-        return <FoodItem meal={'Lunch'}/>
-      case 'dinner':
-        return <FoodItem meal={'Dinner'}/>
-      case 'snacks':
-        return <FoodItem meal={'Snacks'}/>
+      case 'add-food-item':
+        return <FoodItem onSubmit={this.addFoodItem}/>
       default:
         const user = this.state.user.map(user => user.calorieGoal)
         return <Home user={this.state.user.length} onSubmit={this.addBudget} goal={user}/>

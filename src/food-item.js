@@ -29,6 +29,7 @@ export default class FoodItem extends React.Component {
     event.preventDefault()
     const user = Object.assign({}, this.state)
     this.props.onSubmit(user)
+    event.target.reset()
   }
   render() {
     const { value } = this.state
@@ -39,7 +40,7 @@ export default class FoodItem extends React.Component {
         justify="center"
         alignItems="center">
         <div>
-          <h2 className="mt-4">{this.props.meal}</h2>
+          <h2 className="mt-4">Add Food Item</h2>
         </div>
         <Form className="mt-2" onSubmit={this.handleSubmit}>
           <FormGroup>
@@ -55,7 +56,7 @@ export default class FoodItem extends React.Component {
               name="calories"
               value={value}
               onChange={this.handleChange}
-              endAdornment={<InputAdornment position="start">calories</InputAdornment>}/>
+              endAdornment={<InputAdornment position="start">calories/serving</InputAdornment>}/>
           </FormControl>
           <FormGroup className="mt-4 w-100">
             <InputLabel>Food Item</InputLabel>
