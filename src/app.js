@@ -1,7 +1,7 @@
 import React from 'react'
 import hash from './hash'
 import Home from './home'
-import Meal from './meal'
+import FoodItem from './food-item'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -12,6 +12,7 @@ export default class App extends React.Component {
       view: path
     }
     this.addBudget = this.addBudget.bind(this)
+    this.addFoodItem = this.addFoodItem.bind(this)
   }
   addBudget(newUser) {
     const req = {
@@ -25,19 +26,31 @@ export default class App extends React.Component {
         user: [...this.state.user, addedUser]
       }))
   }
+  addFoodItem(item) {
+    const req = {
+      method: 'POST',
+      body: JSON.stringify(item),
+      headers: { 'Content-Type': 'application/json' }
+    }
+    return fetch('/food-items', req)
+      .then(res => res.json())
+      .then(item => this.setState({
+        user: item
+      }))
+  }
   renderView() {
     const { path } = this.state.view
     switch (path) {
       case 'breakfast':
-        return <Meal meal={'Breakfast'}/>
+        return <FoodItem meal={'Breakfast'} onSubmit={this.addFoodItem} mealType={'breakfast'}/>
       case 'lunch':
-        return <Meal meal={'Lunch'}/>
+        return <FoodItem meal={'Lunch'}/>
       case 'dinner':
-        return <Meal meal={'Dinner'}/>
+        return <FoodItem meal={'Dinner'}/>
       case 'snacks':
-        return <Meal meal={'Snacks'}/>
+        return <FoodItem meal={'Snacks'}/>
       default:
-        const user = this.state.user.map(user => user.calories)
+        const user = this.state.user.map(user => user.calorieGoal)
         return <Home user={this.state.user.length} onSubmit={this.addBudget} goal={user}/>
     }
   }
