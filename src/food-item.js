@@ -59,7 +59,7 @@ export default class FoodItem extends React.Component {
               endAdornment={<InputAdornment position="start">calories/serving</InputAdornment>}/>
           </FormControl>
           <FormGroup className="mt-4 w-100">
-            <InputLabel>Food Item</InputLabel>
+            <InputLabel>Meal Type</InputLabel>
             <Select
               native
               className="w-100"
