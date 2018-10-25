@@ -59,6 +59,9 @@ export default class App extends React.Component {
     fetch('/users')
       .then(res => res.json())
       .then(user => this.setState({ user }))
+    fetch('/food-items')
+      .then(res => res.json())
+      .then(item => this.setState({ foodItems: item }))
   }
   render() {
     return (
