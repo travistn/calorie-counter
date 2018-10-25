@@ -12,7 +12,8 @@ const styles = {
     marginTop: '1.55rem'
   },
   editIcon: {
-    fontSize: '17px'
+    fontSize: '17px',
+    cusror: 'pointer'
   }
 }
 
