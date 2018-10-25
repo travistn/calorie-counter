@@ -44,6 +44,7 @@ export default class App extends React.Component {
     switch (path) {
       case 'add-food-item':
         return <FoodItem onSubmit={this.addFoodItem}/>
+      case 'list-of-food-items':
       default:
         const user = this.state.user.map(user => user.calorieGoal)
         return <Home user={this.state.user.length} onSubmit={this.addBudget} goal={user}/>
