@@ -9,7 +9,7 @@ export default class CalorieForm extends React.Component {
     super(props)
     this.state = {
       weight: '',
-      calories: ''
+      calorieGoal: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -49,7 +49,7 @@ export default class CalorieForm extends React.Component {
           </FormGroup>
           <FormGroup>
             <TextField
-              name="calories"
+              name="calorieGoal"
               label="Calories per day"
               className="classes.textField"
               margin="normal"

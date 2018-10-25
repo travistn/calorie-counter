@@ -1,3 +1,23 @@
 {
-  "users": []
+  "users": [
+    {
+      "weight": 165,
+      "calorieGoal": 2000,
+      "id": 1
+    }
+  ],
+  "food-items": [
+    {
+      "foodName": "Almonds",
+      "calories": "100",
+      "mealType": "breakfast",
+      "id": 1
+    },
+    {
+      "foodName": "Salad",
+      "calories": "400",
+      "mealType": "lunch",
+      "id": 2
+    }
+  ]
 }
