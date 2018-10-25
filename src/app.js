@@ -53,6 +53,23 @@ export default class App extends React.Component {
         this.setState({ foodItems })
       })
   }
+  editFoodItem(item) {
+    const req = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(item)
+    }
+    return fetch(`/food-items/${item.id}`, req)
+      .then(res => res.json())
+      .then(foodItem => {
+        const foodItems = this.state.foodItems.map(item =>
+          item.id === foodItems.id
+            ? foodItem
+            : item
+        )
+        this.setState({ foodItems })
+      })
+  }
   renderView() {
     const { path } = this.state.view
     switch (path) {
