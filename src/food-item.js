@@ -67,10 +67,10 @@ export default class FoodItem extends React.Component {
               value={value}
               onChange={this.handleChange}>
               <option value=""/>
-              <option value={'breakfast'}>Breakfast</option>
-              <option value={'lunch'}>Lunch</option>
-              <option value={'dinner'}>Dinner</option>
-              <option value={'snack'}>Snack</option>
+              <option value={'Breakfast'}>Breakfast</option>
+              <option value={'Lunch'}>Lunch</option>
+              <option value={'Dinner'}>Dinner</option>
+              <option value={'Snack'}>Snack</option>
             </Select>
           </FormGroup>
           <div className="mt-4 text-center">

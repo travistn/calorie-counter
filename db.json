@@ -10,14 +10,20 @@
     {
       "foodName": "Almonds",
       "calories": "100",
-      "mealType": "breakfast",
+      "mealType": "Breakfast",
       "id": 1
     },
     {
-      "foodName": "Salad",
+      "foodName": "Caesar Salad",
       "calories": "400",
-      "mealType": "lunch",
+      "mealType": "Lunch",
       "id": 2
+    },
+    {
+      "foodName": "Spaghetti",
+      "calories": "800",
+      "mealType": "Dinner",
+      "id": 3
     }
   ]
 }

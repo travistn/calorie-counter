@@ -2,6 +2,7 @@ import React from 'react'
 import hash from './hash'
 import Home from './home'
 import FoodItem from './food-item'
+import FoodItemsList from './view-food-items'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -44,6 +45,8 @@ export default class App extends React.Component {
     switch (path) {
       case 'add-food-item':
         return <FoodItem onSubmit={this.addFoodItem}/>
+      case 'list-of-food-items':
+        return <FoodItemsList foodList={this.state.foodItems}/>
       default:
         const user = this.state.user.map(user => user.calorieGoal)
         return <Home user={this.state.user.length} onSubmit={this.addBudget} goal={user}/>

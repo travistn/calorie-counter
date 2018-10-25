@@ -29,6 +29,9 @@ export default class Home extends React.Component {
             <div className="text-center ml-5 mt-5">
               <Button color="primary" href='#add-food-item'>Add Food Item</Button>
             </div>
+            <div className="text-center ml-5 mt-4">
+              <Button color="primary" href="#list-of-food-items">View Food Items</Button>
+            </div>
             <Card body className="shadow sm m-4 w-100">
               <CardTitle className="h6"><span className="mr-2">🥞</span> Breakfast
                 <a href="#breakfast">
