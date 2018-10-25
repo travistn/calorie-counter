@@ -9,6 +9,7 @@ export default class App extends React.Component {
     const { path } = hash.parse(location.hash)
     this.state = {
       user: [],
+      foodItems: [],
       view: path
     }
     this.addBudget = this.addBudget.bind(this)
@@ -35,7 +36,7 @@ export default class App extends React.Component {
     return fetch('/food-items', req)
       .then(res => res.json())
       .then(item => this.setState({
-        user: item
+        foodItems: [...this.state.foodItems, item]
       }))
   }
   renderView() {
