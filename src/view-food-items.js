@@ -7,7 +7,12 @@ const styles = {
     fontSize: '14px'
   },
   icon: {
-    cursor: 'pointer'
+    cursor: 'pointer',
+    fontSize: '20px',
+    marginTop: '1.55rem'
+  },
+  editIcon: {
+    fontSize: '17px'
   }
 }
 
@@ -26,9 +31,15 @@ export default function FoodItemsList({ foodList, deleteOnClick }) {
               <CardBody>
                 <CardText className="text-center h6 text-danger">{item.mealType}</CardText>
                 <CardText className="mt-2" style={styles.font}>{item.foodName}
-                  <i className="fas fa-ban text-primary float-right mt-4"
-                    style={styles.icon}
-                    onClick={() => deleteOnClick(item)}></i>
+                  <span className="text-primary float-right">
+                    <i className="far fa-times-circle"
+                      style={styles.icon}
+                      onClick={() => deleteOnClick(item)}></i>
+                  </span>
+                  <span className="text-primary float-right mt-4 m-3">
+                    <i className="fas fa-edit" style={styles.editIcon}></i>
+                  </span>
+
                 </CardText>
                 <CardText style={styles.font}>{item.calories} cal</CardText>
               </CardBody>

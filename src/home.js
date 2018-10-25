@@ -49,7 +49,7 @@ export default class Home extends React.Component {
             <Card body className="shadow sm m-4 w-100">
               <CardTitle className="h6"><span className="mr-2">🥩</span> Dinner
                 <a href="#dinner">
-                  <i className="fa fa-plus-circle float-right cursor-pointer" style={styles.icon}></i>
+                  <i className="fa fa-plus-circle float-right" style={styles.icon}></i>
                 </a>
               </CardTitle>
             </Card>
