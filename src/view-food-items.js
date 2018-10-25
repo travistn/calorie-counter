@@ -1,6 +1,6 @@
 import React from 'react'
 import Grid from '@material-ui/core/Grid'
-import { Card, CardBody, CardText, Col } from 'reactstrap'
+import { Card, CardBody, CardText } from 'reactstrap'
 
 const styles = {
   font: {
@@ -8,7 +8,7 @@ const styles = {
   }
 }
 
-export default function FoodItemsList({ foodList }) {
+export default function FoodItemsList({ foodList, deleteOnClick }) {
   return (
     <Grid
       container
@@ -23,7 +23,8 @@ export default function FoodItemsList({ foodList }) {
               <CardBody>
                 <CardText className="text-center h6 text-danger">{item.mealType}</CardText>
                 <CardText className="mt-2" style={styles.font}>{item.foodName}
-                  <i className="fas fa-minus-circle text-primary float-right mt-4"></i>
+                  <i className="fas fa-ban text-primary float-right mt-4"
+                    onClick={() => deleteOnClick(item)}></i>
                 </CardText>
                 <CardText style={styles.font}>{item.calories} cal</CardText>
               </CardBody>
