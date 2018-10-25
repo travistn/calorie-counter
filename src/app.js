@@ -15,6 +15,7 @@ export default class App extends React.Component {
     }
     this.addBudget = this.addBudget.bind(this)
     this.addFoodItem = this.addFoodItem.bind(this)
+    this.deleteItem = this.deleteItem.bind(this)
   }
   addBudget(newUser) {
     const req = {
@@ -40,13 +41,25 @@ export default class App extends React.Component {
         foodItems: [...this.state.foodItems, item]
       }))
   }
+  deleteItem(deleted) {
+    const req = {
+      method: 'DELETE'
+    }
+    return fetch(`/food-items/${deleted.id}`, req)
+      .then(() => {
+        const foodItems = this.state.foodItems.filter(item =>
+          item.id !== deleted.id
+        )
+        this.setState({ foodItems })
+      })
+  }
   renderView() {
     const { path } = this.state.view
     switch (path) {
       case 'add-food-item':
         return <FoodItem onSubmit={this.addFoodItem}/>
       case 'list-of-food-items':
-        return <FoodItemsList foodList={this.state.foodItems}/>
+        return <FoodItemsList foodList={this.state.foodItems} deleteOnClick={this.deleteItem}/>
       default:
         const user = this.state.user.map(user => user.calorieGoal)
         return <Home user={this.state.user.length} onSubmit={this.addBudget} goal={user}/>

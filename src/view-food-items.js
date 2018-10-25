@@ -5,6 +5,9 @@ import { Card, CardBody, CardText } from 'reactstrap'
 const styles = {
   font: {
     fontSize: '14px'
+  },
+  icon: {
+    cursor: 'pointer'
   }
 }
 
@@ -24,6 +27,7 @@ export default function FoodItemsList({ foodList, deleteOnClick }) {
                 <CardText className="text-center h6 text-danger">{item.mealType}</CardText>
                 <CardText className="mt-2" style={styles.font}>{item.foodName}
                   <i className="fas fa-ban text-primary float-right mt-4"
+                    style={styles.icon}
                     onClick={() => deleteOnClick(item)}></i>
                 </CardText>
                 <CardText style={styles.font}>{item.calories} cal</CardText>
