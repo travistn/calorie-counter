@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, FormGroup, Input, Button } from 'reactstrap'
+import { Form, FormGroup, Button } from 'reactstrap'
 import Grid from '@material-ui/core/Grid'
 import FormHelperText from '@material-ui/core/FormHelperText'
 import TextField from '@material-ui/core/TextField'
@@ -9,7 +9,7 @@ export default class CalorieForm extends React.Component {
     super(props)
     this.state = {
       weight: '',
-      calorieGoal: ''
+      calorieGoal: '',
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
