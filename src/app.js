@@ -13,12 +13,14 @@ export default class App extends React.Component {
     this.state = {
       user: [],
       foodItems: [],
+      meals: [],
       view: { path, params }
     }
     this.addBudget = this.addBudget.bind(this)
     this.addFoodItem = this.addFoodItem.bind(this)
     this.deleteItem = this.deleteItem.bind(this)
     this.editFoodItem = this.editFoodItem.bind(this)
+    this.recordMeal = this.recordMeal.bind(this)
   }
   addBudget(newUser) {
     const req = {
@@ -79,6 +81,18 @@ export default class App extends React.Component {
         location.hash = '#list-of-food-items'
       })
   }
+  recordMeal(meal) {
+    const req = {
+      method: 'POST',
+      body: JSON.stringify(meal),
+      headers: { 'Content-Type': 'application/json' }
+    }
+    return fetch('/meals', req)
+      .then(res => res.json())
+      .then(meal => this.setState({
+        meals: [...this.state.meals, meal]
+      }))
+  }
   renderView() {
     const { path, params } = this.state.view
     switch (path) {
@@ -90,7 +104,7 @@ export default class App extends React.Component {
         const foodItem = this.state.foodItems.find(item => item.id === parseInt(params.id, 10))
         return <EditFoodItem item={foodItem} onSubmit={this.editFoodItem}/>
       case 'breakfast':
-        return <RecordMeal foodItems={this.state.foodItems}/>
+        return <RecordMeal foodItems={this.state.foodItems} mealType={'breakfast'} onSubmit={this.recordMeal}/>
       case 'lunch':
         return <RecordMeal foodItems={this.state.foodItems}/>
       case 'dinner':

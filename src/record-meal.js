@@ -3,7 +3,31 @@ import Grid from '@material-ui/core/Grid'
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap'
 
 export default class RecordMeal extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      foodName: '',
+      calories: '',
+      servingSize: '',
+      mealType: this.props.mealType
+    }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+  handleChange(event) {
+    const form = event.target
+    this.setState({
+      servingSize: parseInt(event.target.value)
+    })
+  }
+  handleSubmit(event) {
+    event.preventDefault()
+    const user = Object.assign({}, this.state)
+    this.props.onSubmit(user)
+    event.target.reset()
+  }
   render() {
+    const { value } = this.state
     return (
       <Grid
         container
@@ -13,10 +37,15 @@ export default class RecordMeal extends React.Component {
         <div>
           <h2 className="mt-4">Record Your Meal</h2>
         </div>
-        <Form className="text-center mt-5">
+        <Form className="text-center mt-5" onSubmit={this.handleSubmit}>
           <FormGroup>
             <Label>Select a food item:</Label>
-            <Input type="select" name="foodItem" className="shadow">
+            <Input
+              type="select"
+              name="foodItem"
+              className="shadow"
+              value={value}
+              onChange={this.handleChange}>
               {
                 this.props.foodItems.map((item, id) => {
                   return (
@@ -28,12 +57,12 @@ export default class RecordMeal extends React.Component {
           </FormGroup>
           <FormGroup className="mt-5">
             <Label>How many servings?</Label>
-            <Input type="select" name="servingSize" className="shadow">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
+            <Input
+              type="text"
+              name="servingSize"
+              className="shadow"
+              value={value}
+              onChange={this.handleChange}>
             </Input>
           </FormGroup>
           <div>
