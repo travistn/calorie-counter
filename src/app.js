@@ -12,7 +12,7 @@ export default class App extends React.Component {
     this.state = {
       user: [],
       foodItems: [],
-      view: {path, params}
+      view: { path, params }
     }
     this.addBudget = this.addBudget.bind(this)
     this.addFoodItem = this.addFoodItem.bind(this)
@@ -27,9 +27,12 @@ export default class App extends React.Component {
     }
     return fetch('/users', req)
       .then(res => res.json())
-      .then(addedUser => this.setState({
-        user: [...this.state.user, addedUser]
-      }))
+      .then(addedUser => {
+        this.setState({
+          user: [...this.state.user, addedUser]
+        })
+        location.hash = '#home'
+      })
   }
   addFoodItem(item) {
     const req = {
@@ -56,16 +59,18 @@ export default class App extends React.Component {
       })
   }
   editFoodItem(item) {
+    const { params } = this.state.view
+    const id = parseInt(params.id, 10)
     const req = {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(item)
     }
-    return fetch(`/food-items/${item.id}`, req)
+    return fetch(`/food-items/${id}`, req)
       .then(res => res.json())
       .then(foodItem => {
         const foodItems = this.state.foodItems.map(item =>
-          item.id === foodItems.id
+          item.id === foodItem.id
             ? foodItem
             : item
         )
