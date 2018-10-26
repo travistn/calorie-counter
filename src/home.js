@@ -23,7 +23,8 @@ export default class Home extends React.Component {
           container
           direction="column"
           justify="center"
-          alignItems="center">
+          alignItems="center"
+          href="#home">
           <div className="mt-5">
             <p className="float-right">Goal: {this.props.goal} cal</p>
             <div className="text-center ml-5 mt-5">
@@ -49,7 +50,7 @@ export default class Home extends React.Component {
             <Card body className="shadow sm m-4 w-100">
               <CardTitle className="h6"><span className="mr-2">🥩</span> Dinner
                 <a href="#dinner">
-                  <i className="fa fa-plus-circle float-right cursor-pointer" style={styles.icon}></i>
+                  <i className="fa fa-plus-circle float-right" style={styles.icon}></i>
                 </a>
               </CardTitle>
             </Card>
