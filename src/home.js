@@ -23,7 +23,8 @@ export default class Home extends React.Component {
           container
           direction="column"
           justify="center"
-          alignItems="center">
+          alignItems="center"
+          href="#home">
           <div className="mt-5">
             <p className="float-right">Goal: {this.props.goal} cal</p>
             <div className="text-center ml-5 mt-5">
