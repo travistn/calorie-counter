@@ -88,6 +88,10 @@ export default class App extends React.Component {
       case 'edit-food-item':
         const foodItem = this.state.foodItems.find(item => item.id === parseInt(params.id, 10))
         return <EditFoodItem item={foodItem} onSubmit={this.editFoodItem}/>
+      case 'breakfast':
+      case 'lunch':
+      case 'dinner':
+      case 'snacks':
       default:
         const user = this.state.user.map(user => user.calorieGoal)
         return <Home user={this.state.user.length} onSubmit={this.addBudget} goal={user}/>
