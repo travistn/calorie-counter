@@ -26,11 +26,11 @@ export default function FoodItemsList({ foodList, deleteOnClick }) {
       alignItems="center">
       <h2 className="mt-4">List of Food Items</h2>
       {
-        foodList.map((item, id) => {
+        foodList.map((item, index) => {
           const foodId = item.id
           const url = `#edit-food-item?id=${foodId}`
           return (
-            <Card className="m-4 shadow sm w-25 border-light" key={id}>
+            <Card className="m-4 shadow sm w-25 border-light" key={index}>
               <CardBody>
                 <CardText className="text-center h6 text-danger">Looks good!</CardText>
                 <CardText className="mt-2" style={styles.font}>{item.foodName}

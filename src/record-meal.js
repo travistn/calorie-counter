@@ -15,8 +15,12 @@ export default class RecordMeal extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
   handleChange(event) {
-    const form = event.target
+    const id = parseInt(event.target.value, 10)
+    const foodItem = this.props.foodItems.find(item => item.id === id)
+    const calorieProduct = this.state.servingSize * parseInt(foodItem.calories, 10)
     this.setState({
+      foodName: foodItem.foodName,
+      calories: calorieProduct,
       servingSize: parseInt(event.target.value)
     })
   }
@@ -44,12 +48,11 @@ export default class RecordMeal extends React.Component {
               type="select"
               name="foodItem"
               className="shadow"
-              value={value}
               onChange={this.handleChange}>
               {
-                this.props.foodItems.map((item, id) => {
+                this.props.foodItems.map((item, index) => {
                   return (
-                    <option key={id}>{item.foodName + ' ' + item.calories + ' cal'}</option>
+                    <option key={index} value={item.id}>{item.foodName + ' ' + item.calories + ' cal'}</option>
                   )
                 })
               }

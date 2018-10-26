@@ -95,22 +95,23 @@ export default class App extends React.Component {
   }
   renderView() {
     const { path, params } = this.state.view
+    const { foodItems } = this.state
     switch (path) {
       case 'add-food-item':
         return <FoodItem onSubmit={this.addFoodItem}/>
       case 'list-of-food-items':
-        return <FoodItemsList foodList={this.state.foodItems} deleteOnClick={this.deleteItem}/>
+        return <FoodItemsList foodList={foodItems} deleteOnClick={this.deleteItem}/>
       case 'edit-food-item':
-        const foodItem = this.state.foodItems.find(item => item.id === parseInt(params.id, 10))
+        const foodItem = foodItems.find(item => item.id === parseInt(params.id, 10))
         return <EditFoodItem item={foodItem} onSubmit={this.editFoodItem}/>
       case 'breakfast':
-        return <RecordMeal foodItems={this.state.foodItems} mealType={'breakfast'} onSubmit={this.recordMeal}/>
+        return <RecordMeal foodItems={foodItems} mealType={'breakfast'} onSubmit={this.recordMeal}/>
       case 'lunch':
-        return <RecordMeal foodItems={this.state.foodItems}/>
+        return <RecordMeal foodItems={foodItems} mealType={'breakfast'} onSubmit={this.recordMeal}/>
       case 'dinner':
-        return <RecordMeal foodItems={this.state.foodItems}/>
+        return <RecordMeal foodItems={foodItems} mealType={'breakfast'} onSubmit={this.recordMeal}/>
       case 'snacks':
-        return <RecordMeal foodItems={this.state.foodItems}/>
+        return <RecordMeal foodItems={foodItems} mealType={'breakfast'} onSubmit={this.recordMeal}/>
       default:
         const user = this.state.user.map(user => user.calorieGoal)
         return <Home user={this.state.user.length} onSubmit={this.addBudget} goal={user}/>
