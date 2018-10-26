@@ -4,6 +4,7 @@ import Home from './home'
 import FoodItem from './food-item'
 import FoodItemsList from './view-food-items'
 import EditFoodItem from './edit-food-item'
+import RecordMeal from './record-meal'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -89,9 +90,13 @@ export default class App extends React.Component {
         const foodItem = this.state.foodItems.find(item => item.id === parseInt(params.id, 10))
         return <EditFoodItem item={foodItem} onSubmit={this.editFoodItem}/>
       case 'breakfast':
+        return <RecordMeal foodItems={this.state.foodItems}/>
       case 'lunch':
+        return <RecordMeal foodItems={this.state.foodItems}/>
       case 'dinner':
+        return <RecordMeal foodItems={this.state.foodItems}/>
       case 'snacks':
+        return <RecordMeal foodItems={this.state.foodItems}/>
       default:
         const user = this.state.user.map(user => user.calorieGoal)
         return <Home user={this.state.user.length} onSubmit={this.addBudget} goal={user}/>
