@@ -1,12 +1,15 @@
 import React from 'react'
 import CalorieForm from './calorie-budget'
 import Grid from '@material-ui/core/Grid'
-import { Card, CardTitle, Button } from 'reactstrap'
+import { Card, CardTitle, CardText, Button } from 'reactstrap'
 
 const styles = {
   icon: {
     color: '#78C1AD',
     cursor: 'pointer'
+  },
+  cardText: {
+    fontSize: '13px'
   }
 }
 
@@ -39,6 +42,8 @@ export default class Home extends React.Component {
                   <i className="fa fa-plus-circle float-right" style={styles.icon}></i>
                 </a>
               </CardTitle>
+              <CardText className="mt-2" style={styles.cardText}>{this.props.breakfastFood}</CardText>
+              <CardText style={styles.cardText}>Total: {this.props.breakfastCal} cal</CardText>
             </Card>
             <Card body className="shadow sm m-4 w-100">
               <CardTitle className="h6"><span className="mr-2">🥪</span> Lunch
@@ -46,6 +51,8 @@ export default class Home extends React.Component {
                   <i className="fa fa-plus-circle float-right" style={styles.icon}></i>
                 </a>
               </CardTitle>
+              <CardText className="mt-2" style={styles.cardText}>{this.props.lunchFood}</CardText>
+              <CardText style={styles.cardText}>Total: {this.props.lunchCal} cal</CardText>
             </Card>
             <Card body className="shadow sm m-4 w-100">
               <CardTitle className="h6"><span className="mr-2">🥩</span> Dinner
@@ -53,6 +60,8 @@ export default class Home extends React.Component {
                   <i className="fa fa-plus-circle float-right" style={styles.icon}></i>
                 </a>
               </CardTitle>
+              <CardText className="mt-2" style={styles.cardText}>{this.props.dinnerFood}</CardText>
+              <CardText style={styles.cardText}>Total: {this.props.dinnerCal} cal</CardText>
             </Card>
             <Card body className="shadow sm m-4 w-100">
               <CardTitle className="h6"><span className="mr-2">🍪</span> Snacks
@@ -60,6 +69,8 @@ export default class Home extends React.Component {
                   <i className="fa fa-plus-circle float-right" style={styles.icon}></i>
                 </a>
               </CardTitle>
+              <CardText className="mt-2" style={styles.cardText}>{this.props.snackFood}</CardText>
+              <CardText style={styles.cardText}>Total: {this.props.snackCal} cal</CardText>
             </Card>
           </div>
         </Grid>

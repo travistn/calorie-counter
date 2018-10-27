@@ -9,7 +9,7 @@ export default class CalorieForm extends React.Component {
     super(props)
     this.state = {
       weight: '',
-      calorieGoal: '',
+      calorieGoal: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)

@@ -12,26 +12,31 @@ export default class RecordMeal extends React.Component {
       mealType: this.props.mealType
     }
     this.handleChange = this.handleChange.bind(this)
+    this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
   handleChange(event) {
     const id = parseInt(event.target.value, 10)
     const foodItem = this.props.foodItems.find(item => item.id === id)
-    const calorieProduct = this.state.servingSize * parseInt(foodItem.calories, 10)
     this.setState({
       foodName: foodItem.foodName,
-      calories: calorieProduct,
-      servingSize: parseInt(event.target.value)
+      calories: foodItem.calories
+    })
+    console.log(this.state.servingSize)
+  }
+  handleInputChange(event) {
+    this.setState({
+      servingSize: parseInt(event.target.value, 10)
     })
   }
   handleSubmit(event) {
     event.preventDefault()
-    const user = Object.assign({}, this.state)
+    const user = Object.assign({}, this.state,
+      {calories: this.state.servingSize * parseInt(this.state.calories, 10)})
     this.props.onSubmit(user)
     event.target.reset()
   }
   render() {
-    const { value } = this.state
     return (
       <Grid
         container
@@ -49,6 +54,7 @@ export default class RecordMeal extends React.Component {
               name="foodItem"
               className="shadow"
               onChange={this.handleChange}>
+              <option></option>
               {
                 this.props.foodItems.map((item, index) => {
                   return (
@@ -64,8 +70,7 @@ export default class RecordMeal extends React.Component {
               type="text"
               name="servingSize"
               className="shadow"
-              value={value}
-              onChange={this.handleChange}>
+              onChange={this.handleInputChange}>
             </Input>
           </FormGroup>
           <div>
