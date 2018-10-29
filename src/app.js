@@ -94,6 +94,18 @@ export default class App extends React.Component {
         meals: [...this.state.meals, meal]
       }))
   }
+  deleteMeal(deleted) {
+    const req = {
+      method: 'DELETE'
+    }
+    return fetch(`/meals/${deleted.mealType}`, req)
+      .then(() => {
+        const meals = this.state.meals.filter(item =>
+          item.mealType === deleted.mealType
+        )
+        this.setState({ meals })
+      })
+  }
   renderView() {
     const { path, params } = this.state.view
     const { user, foodItems, meals } = this.state
