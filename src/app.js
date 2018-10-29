@@ -90,7 +90,7 @@ export default class App extends React.Component {
     return fetch('/meals', req)
       .then(res => res.json())
       .then(meal => this.setState({
-        meals: [...this.state.meals, meal] || []
+        meals: [...this.state.meals, meal]
       }))
   }
   renderView() {
@@ -105,13 +105,13 @@ export default class App extends React.Component {
         const foodItem = foodItems.find(item => item.id === parseInt(params.id, 10))
         return <EditFoodItem item={foodItem} onSubmit={this.editFoodItem}/>
       case 'breakfast':
-        return <RecordMeal foodItems={foodItems} mealType={'breakfast'} onSubmit={this.recordMeal}/>
+        return <RecordMeal foodItems={foodItems} mealType={path} onSubmit={this.recordMeal}/>
       case 'lunch':
-        return <RecordMeal foodItems={foodItems} mealType={'lunch'} onSubmit={this.recordMeal}/>
+        return <RecordMeal foodItems={foodItems} mealType={path} onSubmit={this.recordMeal}/>
       case 'dinner':
-        return <RecordMeal foodItems={foodItems} mealType={'dinner'} onSubmit={this.recordMeal}/>
+        return <RecordMeal foodItems={foodItems} mealType={path} onSubmit={this.recordMeal}/>
       case 'snacks':
-        return <RecordMeal foodItems={foodItems} mealType={'snacks'} onSubmit={this.recordMeal}/>
+        return <RecordMeal foodItems={foodItems} mealType={path} onSubmit={this.recordMeal}/>
       default:
         const goal = user.map(user => user.calorieGoal)
         const breakfast = meals.filter(item => item.mealType === 'breakfast')

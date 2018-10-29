@@ -22,7 +22,6 @@ export default class RecordMeal extends React.Component {
       foodName: foodItem.foodName,
       calories: foodItem.calories
     })
-    console.log(this.state.servingSize)
   }
   handleInputChange(event) {
     this.setState({
