@@ -54,6 +54,7 @@ export default class Home extends React.Component {
       }
       let snackCal = snacks.map(item => item.calories)
       snackCal = snackCal.reduce((a, b) => a + b, 0)
+      const deleteBreakfast = this.props.meals.map(meal => meal.mealType === 'breakfast')
       return (
         <Grid
           container
@@ -78,7 +79,9 @@ export default class Home extends React.Component {
               <CardText className="mt-2" style={styles.cardText}>{breakfastFood}</CardText>
               <CardText style={styles.cardText}>Total: {breakfastCal} cal
                 <span>
-                  <i className="far fa-trash-alt float-right" style={styles.trashIcon}></i>
+                  <i className="far fa-trash-alt float-right"
+                    style={styles.trashIcon}
+                    onClick={this.props.deleteOnClick(deleteBreakfast)}></i>
                 </span>
               </CardText>
             </Card>
@@ -91,7 +94,9 @@ export default class Home extends React.Component {
               <CardText className="mt-2" style={styles.cardText}>{lunchFood}</CardText>
               <CardText style={styles.cardText}>Total: {lunchCal} cal
                 <span>
-                  <i className="far fa-trash-alt float-right" style={styles.trashIcon}></i>
+                  <i className="far fa-trash-alt float-right"
+                    style={styles.trashIcon}
+                    onClick={this.props.deleteOnClick}></i>
                 </span>
               </CardText>
             </Card>
@@ -104,7 +109,9 @@ export default class Home extends React.Component {
               <CardText className="mt-2" style={styles.cardText}>{dinnerFood}</CardText>
               <CardText style={styles.cardText}>Total: {dinnerCal} cal
                 <span>
-                  <i className="far fa-trash-alt float-right" style={styles.trashIcon}></i>
+                  <i className="far fa-trash-alt float-right"
+                    style={styles.trashIcon}
+                    onClick={this.props.deleteOnClick}></i>
                 </span>
               </CardText>
             </Card>
@@ -117,7 +124,9 @@ export default class Home extends React.Component {
               <CardText className="mt-2" style={styles.cardText}>{snackFood}</CardText>
               <CardText style={styles.cardText}>Total: {snackCal} cal
                 <span>
-                  <i className="far fa-trash-alt float-right" style={styles.trashIcon}></i>
+                  <i className="far fa-trash-alt float-right"
+                    style={styles.trashIcon}
+                    onClick={this.props.deleteOnClick}></i>
                 </span>
               </CardText>
             </Card>
