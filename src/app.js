@@ -21,6 +21,7 @@ export default class App extends React.Component {
     this.deleteItem = this.deleteItem.bind(this)
     this.editFoodItem = this.editFoodItem.bind(this)
     this.recordMeal = this.recordMeal.bind(this)
+    this.deleteMeal = this.deleteMeal.bind(this)
   }
   addBudget(newUser) {
     const req = {
@@ -98,10 +99,10 @@ export default class App extends React.Component {
     const req = {
       method: 'DELETE'
     }
-    return fetch(`/meals/${deleted.mealType}`, req)
+    return fetch(`/meals/${deleted.id}`, req)
       .then(() => {
         const meals = this.state.meals.filter(item =>
-          item.mealType === deleted.mealType
+          item.id !== deleted.id
         )
         this.setState({ meals })
       })
@@ -125,7 +126,7 @@ export default class App extends React.Component {
       default:
         const goal = user.map(user => user.calorieGoal)
         return <Home user={user.length} onSubmit={this.addBudget} goal={goal}
-          meals={meals}/>
+          meals={meals} deleteOnClick={this.deleteMeal}/>
     }
   }
   componentDidMount() {

@@ -27,34 +27,40 @@ export default class Home extends React.Component {
     }
     if (this.props.user > 0) {
       const breakfast = this.props.meals.filter(item => item.mealType === 'breakfast')
+      const deleteBreakfast = this.props.meals.find(item => item.mealType === 'breakfast')
       let breakfastFood = breakfast.map(item => item.foodName)
       if (breakfastFood.length > 1) {
         breakfastFood = breakfastFood.join(', ')
       }
       let breakfastCal = breakfast.map(item => item.calories)
       breakfastCal = breakfastCal.reduce((a, b) => a + b, 0)
+
       const lunch = this.props.meals.filter(item => item.mealType === 'lunch')
+      const deleteLunch = this.props.meals.find(item => item.mealType === 'lunch')
       let lunchFood = lunch.map(item => item.foodName)
       if (lunchFood.length > 1) {
         lunchFood = lunchFood.join(', ')
       }
       let lunchCal = lunch.map(item => item.calories)
       lunchCal = lunchCal.reduce((a, b) => a + b, 0)
+
       const dinner = this.props.meals.filter(item => item.mealType === 'dinner')
+      const deleteDinner = this.props.meals.find(item => item.mealType === 'dinner')
       let dinnerFood = dinner.map(item => item.foodName)
       if (dinnerFood.length > 1) {
         dinnerFood = dinnerFood.join(', ')
       }
       let dinnerCal = dinner.map(item => item.calories)
       dinnerCal = dinnerCal.reduce((a, b) => a + b, 0)
+
       const snacks = this.props.meals.filter(item => item.mealType === 'snacks')
+      const deleteSnack = this.props.meals.find(item => item.mealType === 'snacks')
       let snackFood = snacks.map(item => item.foodName)
       if (snackFood.length > 1) {
         snackFood = snackFood.join(', ')
       }
       let snackCal = snacks.map(item => item.calories)
       snackCal = snackCal.reduce((a, b) => a + b, 0)
-      const deleteBreakfast = this.props.meals.map(meal => meal.mealType === 'breakfast')
       return (
         <Grid
           container
@@ -81,7 +87,7 @@ export default class Home extends React.Component {
                 <span>
                   <i className="far fa-trash-alt float-right"
                     style={styles.trashIcon}
-                    onClick={this.props.deleteOnClick(deleteBreakfast)}></i>
+                    onClick={() => this.props.deleteOnClick(deleteBreakfast)}></i>
                 </span>
               </CardText>
             </Card>
@@ -96,7 +102,7 @@ export default class Home extends React.Component {
                 <span>
                   <i className="far fa-trash-alt float-right"
                     style={styles.trashIcon}
-                    onClick={this.props.deleteOnClick}></i>
+                    onClick={() => this.props.deleteOnClick(deleteLunch)}></i>
                 </span>
               </CardText>
             </Card>
@@ -111,7 +117,7 @@ export default class Home extends React.Component {
                 <span>
                   <i className="far fa-trash-alt float-right"
                     style={styles.trashIcon}
-                    onClick={this.props.deleteOnClick}></i>
+                    onClick={() => this.props.deleteOnClick(deleteDinner)}></i>
                 </span>
               </CardText>
             </Card>
@@ -126,7 +132,7 @@ export default class Home extends React.Component {
                 <span>
                   <i className="far fa-trash-alt float-right"
                     style={styles.trashIcon}
-                    onClick={this.props.deleteOnClick}></i>
+                    onClick={() => this.props.deleteOnClick(deleteSnack)}></i>
                 </span>
               </CardText>
             </Card>
