@@ -21,6 +21,34 @@ export default class Home extends React.Component {
       )
     }
     if (this.props.user > 0) {
+      const breakfast = this.props.meals.filter(item => item.mealType === 'breakfast')
+      let breakfastFood = breakfast.map(item => item.foodName)
+      if (breakfastFood.length > 1) {
+        breakfastFood = breakfastFood.join(', ')
+      }
+      let breakfastCal = breakfast.map(item => item.calories)
+      breakfastCal = breakfastCal.reduce((a, b) => a + b, 0)
+      const lunch = this.props.meals.filter(item => item.mealType === 'lunch')
+      let lunchFood = lunch.map(item => item.foodName)
+      if (lunchFood.length > 1) {
+        lunchFood = lunchFood.join(', ')
+      }
+      let lunchCal = lunch.map(item => item.calories)
+      lunchCal = lunchCal.reduce((a, b) => a + b, 0)
+      const dinner = this.props.meals.filter(item => item.mealType === 'dinner')
+      let dinnerFood = dinner.map(item => item.foodName)
+      if (dinnerFood.length > 1) {
+        dinnerFood = dinnerFood.join(', ')
+      }
+      let dinnerCal = dinner.map(item => item.calories)
+      dinnerCal = dinnerCal.reduce((a, b) => a + b, 0)
+      const snacks = this.props.meals.filter(item => item.mealType === 'snacks')
+      let snackFood = snacks.map(item => item.foodName)
+      if (snackFood.length > 1) {
+        snackFood = snackFood.join(', ')
+      }
+      let snackCal = snacks.map(item => item.calories)
+      snackCal = snackCal.reduce((a, b) => a + b, 0)
       return (
         <Grid
           container
@@ -42,8 +70,8 @@ export default class Home extends React.Component {
                   <i className="fa fa-plus-circle float-right" style={styles.icon}></i>
                 </a>
               </CardTitle>
-              <CardText className="mt-2" style={styles.cardText}>{this.props.breakfastFood}</CardText>
-              <CardText style={styles.cardText}>Total: {this.props.breakfastCal} cal</CardText>
+              <CardText className="mt-2" style={styles.cardText}>{breakfastFood}</CardText>
+              <CardText style={styles.cardText}>Total: {breakfastCal} cal</CardText>
             </Card>
             <Card body className="shadow sm m-4 w-100">
               <CardTitle className="h6"><span className="mr-2">🥪</span> Lunch
@@ -51,8 +79,8 @@ export default class Home extends React.Component {
                   <i className="fa fa-plus-circle float-right" style={styles.icon}></i>
                 </a>
               </CardTitle>
-              <CardText className="mt-2" style={styles.cardText}>{this.props.lunchFood}</CardText>
-              <CardText style={styles.cardText}>Total: {this.props.lunchCal} cal</CardText>
+              <CardText className="mt-2" style={styles.cardText}>{lunchFood}</CardText>
+              <CardText style={styles.cardText}>Total: {lunchCal} cal</CardText>
             </Card>
             <Card body className="shadow sm m-4 w-100">
               <CardTitle className="h6"><span className="mr-2">🥩</span> Dinner
@@ -60,8 +88,8 @@ export default class Home extends React.Component {
                   <i className="fa fa-plus-circle float-right" style={styles.icon}></i>
                 </a>
               </CardTitle>
-              <CardText className="mt-2" style={styles.cardText}>{this.props.dinnerFood}</CardText>
-              <CardText style={styles.cardText}>Total: {this.props.dinnerCal} cal</CardText>
+              <CardText className="mt-2" style={styles.cardText}>{dinnerFood}</CardText>
+              <CardText style={styles.cardText}>Total: {dinnerCal} cal</CardText>
             </Card>
             <Card body className="shadow sm m-4 w-100">
               <CardTitle className="h6"><span className="mr-2">🍪</span> Snacks
@@ -69,8 +97,8 @@ export default class Home extends React.Component {
                   <i className="fa fa-plus-circle float-right" style={styles.icon}></i>
                 </a>
               </CardTitle>
-              <CardText className="mt-2" style={styles.cardText}>{this.props.snackFood}</CardText>
-              <CardText style={styles.cardText}>Total: {this.props.snackCal} cal</CardText>
+              <CardText className="mt-2" style={styles.cardText}>{snackFood}</CardText>
+              <CardText style={styles.cardText}>Total: {snackCal} cal</CardText>
             </Card>
           </div>
         </Grid>

@@ -114,39 +114,8 @@ export default class App extends React.Component {
         return <RecordMeal foodItems={foodItems} mealType={path} onSubmit={this.recordMeal}/>
       default:
         const goal = user.map(user => user.calorieGoal)
-        const breakfast = meals.filter(item => item.mealType === 'breakfast')
-        let breakfastFood = breakfast.map(item => item.foodName)
-        if (breakfastFood.length > 1) {
-          breakfastFood = breakfastFood.join(', ')
-        }
-        let breakfastCal = breakfast.map(item => item.calories)
-        breakfastCal = breakfastCal.reduce((a, b) => a + b, 0)
-        const lunch = meals.filter(item => item.mealType === 'lunch')
-        let lunchFood = lunch.map(item => item.foodName)
-        if (lunchFood.length > 1) {
-          lunchFood = lunchFood.join(', ')
-        }
-        let lunchCal = lunch.map(item => item.calories)
-        lunchCal = lunchCal.reduce((a, b) => a + b, 0)
-        const dinner = meals.filter(item => item.mealType === 'dinner')
-        let dinnerFood = dinner.map(item => item.foodName)
-        if (dinnerFood.length > 1) {
-          dinnerFood = dinnerFood.join(', ')
-        }
-        let dinnerCal = dinner.map(item => item.calories)
-        dinnerCal = dinnerCal.reduce((a, b) => a + b, 0)
-        const snacks = meals.filter(item => item.mealType === 'snacks')
-        let snackFood = snacks.map(item => item.foodName)
-        if (snackFood.length > 1) {
-          snackFood = snackFood.join(', ')
-        }
-        let snackCal = snacks.map(item => item.calories)
-        snackCal = snackCal.reduce((a, b) => a + b, 0)
         return <Home user={user.length} onSubmit={this.addBudget} goal={goal}
-          breakfastFood={breakfastFood} breakfastCal={breakfastCal}
-          lunchFood={lunchFood} lunchCal={lunchCal}
-          dinnerFood={dinnerFood} dinnerCal={dinnerCal}
-          snackFood={snackFood} snackCal={snackCal}/>
+          meals={meals}/>
     }
   }
   componentDidMount() {
