@@ -78,9 +78,7 @@ export default class Home extends React.Component {
               <CardText className="mt-2" style={styles.cardText}>{breakfastFood}</CardText>
               <CardText style={styles.cardText}>Total: {breakfastCal} cal
                 <span>
-                  <a href="#delete-meal">
-                    <i className="far fa-trash-alt float-right" style={styles.trashIcon}></i>
-                  </a>
+                  <i className="far fa-trash-alt float-right" style={styles.trashIcon}></i>
                 </span>
               </CardText>
             </Card>
@@ -93,9 +91,7 @@ export default class Home extends React.Component {
               <CardText className="mt-2" style={styles.cardText}>{lunchFood}</CardText>
               <CardText style={styles.cardText}>Total: {lunchCal} cal
                 <span>
-                  <a href="#delete-meal">
-                    <i className="far fa-trash-alt float-right" style={styles.trashIcon}></i>
-                  </a>
+                  <i className="far fa-trash-alt float-right" style={styles.trashIcon}></i>
                 </span>
               </CardText>
             </Card>
@@ -108,9 +104,7 @@ export default class Home extends React.Component {
               <CardText className="mt-2" style={styles.cardText}>{dinnerFood}</CardText>
               <CardText style={styles.cardText}>Total: {dinnerCal} cal
                 <span>
-                  <a href="#delete-meal">
-                    <i className="far fa-trash-alt float-right" style={styles.trashIcon}></i>
-                  </a>
+                  <i className="far fa-trash-alt float-right" style={styles.trashIcon}></i>
                 </span>
               </CardText>
             </Card>
@@ -123,9 +117,7 @@ export default class Home extends React.Component {
               <CardText className="mt-2" style={styles.cardText}>{snackFood}</CardText>
               <CardText style={styles.cardText}>Total: {snackCal} cal
                 <span>
-                  <a href="#delete-meal">
-                    <i className="far fa-trash-alt float-right" style={styles.trashIcon}></i>
-                  </a>
+                  <i className="far fa-trash-alt float-right" style={styles.trashIcon}></i>
                 </span>
               </CardText>
             </Card>

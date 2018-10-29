@@ -5,7 +5,6 @@ import FoodItem from './food-item'
 import FoodItemsList from './view-food-items'
 import EditFoodItem from './edit-food-item'
 import RecordMeal from './record-meal'
-import DeleteMeal from './delete-meal'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -111,8 +110,6 @@ export default class App extends React.Component {
       case 'dinner':
       case 'snacks':
         return <RecordMeal foodItems={foodItems} mealType={path} onSubmit={this.recordMeal}/>
-      case 'delete-meal':
-        return <DeleteMeal meals={meals}/>
       default:
         const goal = user.map(user => user.calorieGoal)
         return <Home user={user.length} onSubmit={this.addBudget} goal={goal}
