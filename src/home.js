@@ -10,6 +10,11 @@ const styles = {
   },
   cardText: {
     fontSize: '13px'
+  },
+  trashIcon: {
+    color: '#78C1AD',
+    cursor: 'pointer',
+    fontSize: '15px'
   }
 }
 
@@ -22,27 +27,34 @@ export default class Home extends React.Component {
     }
     if (this.props.user > 0) {
       const breakfast = this.props.meals.filter(item => item.mealType === 'breakfast')
+      const deleteBreakfast = this.props.meals.find(item => item.mealType === 'breakfast')
       let breakfastFood = breakfast.map(item => item.foodName)
       if (breakfastFood.length > 1) {
         breakfastFood = breakfastFood.join(', ')
       }
       let breakfastCal = breakfast.map(item => item.calories)
       breakfastCal = breakfastCal.reduce((a, b) => a + b, 0)
+
       const lunch = this.props.meals.filter(item => item.mealType === 'lunch')
+      const deleteLunch = this.props.meals.find(item => item.mealType === 'lunch')
       let lunchFood = lunch.map(item => item.foodName)
       if (lunchFood.length > 1) {
         lunchFood = lunchFood.join(', ')
       }
       let lunchCal = lunch.map(item => item.calories)
       lunchCal = lunchCal.reduce((a, b) => a + b, 0)
+
       const dinner = this.props.meals.filter(item => item.mealType === 'dinner')
+      const deleteDinner = this.props.meals.find(item => item.mealType === 'dinner')
       let dinnerFood = dinner.map(item => item.foodName)
       if (dinnerFood.length > 1) {
         dinnerFood = dinnerFood.join(', ')
       }
       let dinnerCal = dinner.map(item => item.calories)
       dinnerCal = dinnerCal.reduce((a, b) => a + b, 0)
+
       const snacks = this.props.meals.filter(item => item.mealType === 'snacks')
+      const deleteSnack = this.props.meals.find(item => item.mealType === 'snacks')
       let snackFood = snacks.map(item => item.foodName)
       if (snackFood.length > 1) {
         snackFood = snackFood.join(', ')
@@ -71,7 +83,13 @@ export default class Home extends React.Component {
                 </a>
               </CardTitle>
               <CardText className="mt-2" style={styles.cardText}>{breakfastFood}</CardText>
-              <CardText style={styles.cardText}>Total: {breakfastCal} cal</CardText>
+              <CardText style={styles.cardText}>Total: {breakfastCal} cal
+                <span>
+                  <i className="far fa-trash-alt float-right"
+                    style={styles.trashIcon}
+                    onClick={() => this.props.deleteOnClick(deleteBreakfast)}></i>
+                </span>
+              </CardText>
             </Card>
             <Card body className="shadow sm m-4 w-100">
               <CardTitle className="h6"><span className="mr-2">🥪</span> Lunch
@@ -80,7 +98,13 @@ export default class Home extends React.Component {
                 </a>
               </CardTitle>
               <CardText className="mt-2" style={styles.cardText}>{lunchFood}</CardText>
-              <CardText style={styles.cardText}>Total: {lunchCal} cal</CardText>
+              <CardText style={styles.cardText}>Total: {lunchCal} cal
+                <span>
+                  <i className="far fa-trash-alt float-right"
+                    style={styles.trashIcon}
+                    onClick={() => this.props.deleteOnClick(deleteLunch)}></i>
+                </span>
+              </CardText>
             </Card>
             <Card body className="shadow sm m-4 w-100">
               <CardTitle className="h6"><span className="mr-2">🥩</span> Dinner
@@ -89,7 +113,13 @@ export default class Home extends React.Component {
                 </a>
               </CardTitle>
               <CardText className="mt-2" style={styles.cardText}>{dinnerFood}</CardText>
-              <CardText style={styles.cardText}>Total: {dinnerCal} cal</CardText>
+              <CardText style={styles.cardText}>Total: {dinnerCal} cal
+                <span>
+                  <i className="far fa-trash-alt float-right"
+                    style={styles.trashIcon}
+                    onClick={() => this.props.deleteOnClick(deleteDinner)}></i>
+                </span>
+              </CardText>
             </Card>
             <Card body className="shadow sm m-4 w-100">
               <CardTitle className="h6"><span className="mr-2">🍪</span> Snacks
@@ -98,7 +128,13 @@ export default class Home extends React.Component {
                 </a>
               </CardTitle>
               <CardText className="mt-2" style={styles.cardText}>{snackFood}</CardText>
-              <CardText style={styles.cardText}>Total: {snackCal} cal</CardText>
+              <CardText style={styles.cardText}>Total: {snackCal} cal
+                <span>
+                  <i className="far fa-trash-alt float-right"
+                    style={styles.trashIcon}
+                    onClick={() => this.props.deleteOnClick(deleteSnack)}></i>
+                </span>
+              </CardText>
             </Card>
           </div>
         </Grid>
