@@ -106,11 +106,8 @@ export default class App extends React.Component {
         const foodItem = foodItems.find(item => item.id === parseInt(params.id, 10))
         return <EditFoodItem item={foodItem} onSubmit={this.editFoodItem}/>
       case 'breakfast':
-        return <RecordMeal foodItems={foodItems} mealType={path} onSubmit={this.recordMeal}/>
       case 'lunch':
-        return <RecordMeal foodItems={foodItems} mealType={path} onSubmit={this.recordMeal}/>
       case 'dinner':
-        return <RecordMeal foodItems={foodItems} mealType={path} onSubmit={this.recordMeal}/>
       case 'snacks':
         return <RecordMeal foodItems={foodItems} mealType={path} onSubmit={this.recordMeal}/>
       default:
