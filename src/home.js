@@ -10,6 +10,11 @@ const styles = {
   },
   cardText: {
     fontSize: '13px'
+  },
+  trashIcon: {
+    color: '#78C1AD',
+    cursor: 'pointer',
+    fontSize: '15px'
   }
 }
 
@@ -71,7 +76,13 @@ export default class Home extends React.Component {
                 </a>
               </CardTitle>
               <CardText className="mt-2" style={styles.cardText}>{breakfastFood}</CardText>
-              <CardText style={styles.cardText}>Total: {breakfastCal} cal</CardText>
+              <CardText style={styles.cardText}>Total: {breakfastCal} cal
+                <span>
+                  <a href="#delete-meal">
+                    <i className="far fa-trash-alt float-right" style={styles.trashIcon}></i>
+                  </a>
+                </span>
+              </CardText>
             </Card>
             <Card body className="shadow sm m-4 w-100">
               <CardTitle className="h6"><span className="mr-2">🥪</span> Lunch
@@ -80,7 +91,13 @@ export default class Home extends React.Component {
                 </a>
               </CardTitle>
               <CardText className="mt-2" style={styles.cardText}>{lunchFood}</CardText>
-              <CardText style={styles.cardText}>Total: {lunchCal} cal</CardText>
+              <CardText style={styles.cardText}>Total: {lunchCal} cal
+                <span>
+                  <a href="#delete-meal">
+                    <i className="far fa-trash-alt float-right" style={styles.trashIcon}></i>
+                  </a>
+                </span>
+              </CardText>
             </Card>
             <Card body className="shadow sm m-4 w-100">
               <CardTitle className="h6"><span className="mr-2">🥩</span> Dinner
@@ -89,7 +106,13 @@ export default class Home extends React.Component {
                 </a>
               </CardTitle>
               <CardText className="mt-2" style={styles.cardText}>{dinnerFood}</CardText>
-              <CardText style={styles.cardText}>Total: {dinnerCal} cal</CardText>
+              <CardText style={styles.cardText}>Total: {dinnerCal} cal
+                <span>
+                  <a href="#delete-meal">
+                    <i className="far fa-trash-alt float-right" style={styles.trashIcon}></i>
+                  </a>
+                </span>
+              </CardText>
             </Card>
             <Card body className="shadow sm m-4 w-100">
               <CardTitle className="h6"><span className="mr-2">🍪</span> Snacks
@@ -98,7 +121,13 @@ export default class Home extends React.Component {
                 </a>
               </CardTitle>
               <CardText className="mt-2" style={styles.cardText}>{snackFood}</CardText>
-              <CardText style={styles.cardText}>Total: {snackCal} cal</CardText>
+              <CardText style={styles.cardText}>Total: {snackCal} cal
+                <span>
+                  <a href="#delete-meal">
+                    <i className="far fa-trash-alt float-right" style={styles.trashIcon}></i>
+                  </a>
+                </span>
+              </CardText>
             </Card>
           </div>
         </Grid>
