@@ -13,8 +13,7 @@ export default class EditFoodItem extends React.Component {
     super(props)
     this.state = {
       foodName: this.props.item.foodName,
-      calories: this.props.item.calories,
-      mealType: this.props.item.mealType
+      calories: this.props.item.calories
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -56,21 +55,6 @@ export default class EditFoodItem extends React.Component {
               onChange={this.handleChange}
               endAdornment={<InputAdornment position="start">calories/serving</InputAdornment>}/>
           </FormControl>
-          <FormGroup className="mt-4 w-100">
-            <InputLabel>Meal Type</InputLabel>
-            <Select
-              native
-              className="w-100"
-              name="mealType"
-              value={this.state.mealType}
-              onChange={this.handleChange}>
-              <option value=""/>
-              <option value={'Breakfast'}>Breakfast</option>
-              <option value={'Lunch'}>Lunch</option>
-              <option value={'Dinner'}>Dinner</option>
-              <option value={'Snack'}>Snack</option>
-            </Select>
-          </FormGroup>
           <div className="mt-4 text-center">
             <Button color="primary">Save</Button>
           </div>

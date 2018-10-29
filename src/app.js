@@ -4,6 +4,7 @@ import Home from './home'
 import FoodItem from './food-item'
 import FoodItemsList from './view-food-items'
 import EditFoodItem from './edit-food-item'
+import RecordMeal from './record-meal'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -12,12 +13,14 @@ export default class App extends React.Component {
     this.state = {
       user: [],
       foodItems: [],
+      meals: [],
       view: { path, params }
     }
     this.addBudget = this.addBudget.bind(this)
     this.addFoodItem = this.addFoodItem.bind(this)
     this.deleteItem = this.deleteItem.bind(this)
     this.editFoodItem = this.editFoodItem.bind(this)
+    this.recordMeal = this.recordMeal.bind(this)
   }
   addBudget(newUser) {
     const req = {
@@ -78,19 +81,39 @@ export default class App extends React.Component {
         location.hash = '#list-of-food-items'
       })
   }
+  recordMeal(meal) {
+    const userId = this.state.user.find(user => user.id)
+    const req = {
+      method: 'POST',
+      body: JSON.stringify(Object.assign({}, meal, {userId: userId.id})),
+      headers: { 'Content-Type': 'application/json' }
+    }
+    return fetch('/meals', req)
+      .then(res => res.json())
+      .then(meal => this.setState({
+        meals: [...this.state.meals, meal]
+      }))
+  }
   renderView() {
     const { path, params } = this.state.view
+    const { user, foodItems, meals } = this.state
     switch (path) {
       case 'add-food-item':
         return <FoodItem onSubmit={this.addFoodItem}/>
       case 'list-of-food-items':
-        return <FoodItemsList foodList={this.state.foodItems} deleteOnClick={this.deleteItem}/>
+        return <FoodItemsList foodList={foodItems} deleteOnClick={this.deleteItem}/>
       case 'edit-food-item':
-        const foodItem = this.state.foodItems.find(item => item.id === parseInt(params.id, 10))
+        const foodItem = foodItems.find(item => item.id === parseInt(params.id, 10))
         return <EditFoodItem item={foodItem} onSubmit={this.editFoodItem}/>
+      case 'breakfast':
+      case 'lunch':
+      case 'dinner':
+      case 'snacks':
+        return <RecordMeal foodItems={foodItems} mealType={path} onSubmit={this.recordMeal}/>
       default:
-        const user = this.state.user.map(user => user.calorieGoal)
-        return <Home user={this.state.user.length} onSubmit={this.addBudget} goal={user}/>
+        const goal = user.map(user => user.calorieGoal)
+        return <Home user={user.length} onSubmit={this.addBudget} goal={goal}
+          meals={meals}/>
     }
   }
   componentDidMount() {
@@ -106,6 +129,9 @@ export default class App extends React.Component {
     fetch('/food-items')
       .then(res => res.json())
       .then(item => this.setState({ foodItems: item }))
+    fetch('/meals')
+      .then(res => res.json())
+      .then(meals => this.setState({ meals }))
   }
   render() {
     return (

@@ -5,16 +5,13 @@ import TextField from '@material-ui/core/TextField'
 import FormControl from '@material-ui/core/FormControl'
 import Input from '@material-ui/core/Input'
 import InputAdornment from '@material-ui/core/InputAdornment'
-import Select from '@material-ui/core/Select'
-import InputLabel from '@material-ui/core/InputLabel'
 
 export default class FoodItem extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       foodName: '',
-      calories: '',
-      mealType: ''
+      calories: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -58,21 +55,6 @@ export default class FoodItem extends React.Component {
               onChange={this.handleChange}
               endAdornment={<InputAdornment position="start">calories/serving</InputAdornment>}/>
           </FormControl>
-          <FormGroup className="mt-4 w-100">
-            <InputLabel>Meal Type</InputLabel>
-            <Select
-              native
-              className="w-100"
-              name="mealType"
-              value={value}
-              onChange={this.handleChange}>
-              <option value=""/>
-              <option value={'Breakfast'}>Breakfast</option>
-              <option value={'Lunch'}>Lunch</option>
-              <option value={'Dinner'}>Dinner</option>
-              <option value={'Snack'}>Snack</option>
-            </Select>
-          </FormGroup>
           <div className="mt-4 text-center">
             <Button color="primary">Save</Button>
           </div>

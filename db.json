@@ -10,19 +10,52 @@
     {
       "foodName": "Almonds",
       "calories": "100",
-      "mealType": "Breakfast",
       "id": 1
-    },
-    {
-      "foodName": "Caesar Salad",
-      "calories": "400",
-      "mealType": "Lunch",
-      "id": 2
     },
     {
       "foodName": "Spaghetti",
       "calories": "800",
-      "mealType": "Dinner",
+      "id": 2
+    },
+    {
+      "foodName": "Burger",
+      "calories": "600",
+      "id": 3
+    },
+    {
+      "foodName": "Caesar Salad",
+      "calories": "450",
+      "id": 4
+    },
+    {
+      "foodName": "Eggs",
+      "calories": "210",
+      "id": 5
+    }
+  ],
+  "meals": [
+    {
+      "foodName": "Eggs",
+      "calories": 420,
+      "servingSize": 2,
+      "mealType": "breakfast",
+      "userId": 1,
+      "id": 1
+    },
+    {
+      "foodName": "Almonds",
+      "calories": 100,
+      "servingSize": 1,
+      "mealType": "breakfast",
+      "userId": 1,
+      "id": 2
+    },
+    {
+      "foodName": "Spaghetti",
+      "calories": 800,
+      "servingSize": 1,
+      "mealType": "lunch",
+      "userId": 1,
       "id": 3
     }
   ]
