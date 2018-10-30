@@ -5,6 +5,7 @@ import FoodItem from './food-item'
 import FoodItemsList from './view-food-items'
 import EditFoodItem from './edit-food-item'
 import RecordMeal from './record-meal'
+import NavBar from './nav-bar'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -156,6 +157,7 @@ export default class App extends React.Component {
     return (
       <div>
         {this.renderView()}
+        <NavBar/>
       </div>
     )
   }
