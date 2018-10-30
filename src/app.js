@@ -87,10 +87,10 @@ export default class App extends React.Component {
       })
   }
   recordMeal(meal) {
-    const userId = this.state.user.find(user => user.id)
+    let user = this.state.user.find(user => user.id)
     const req = {
       method: 'POST',
-      body: JSON.stringify(Object.assign({}, meal, {userId: userId.id})),
+      body: JSON.stringify(Object.assign({}, meal, {userId: user.id})),
       headers: { 'Content-Type': 'application/json' }
     }
     return fetch('/meals', req)

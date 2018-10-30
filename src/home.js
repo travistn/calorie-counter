@@ -24,6 +24,10 @@ const styles = {
 
 export default class Home extends React.Component {
   render() {
+    let caloriesConsumed = this.props.meals.map(meal => meal.calories)
+    caloriesConsumed = caloriesConsumed.reduce((a, b) => a + b, 0)
+    const calorieDifference = this.props.goal - caloriesConsumed
+    const caloriePercentage = (caloriesConsumed / this.props.goal) * 100
     if (this.props.user === 0) {
       return (
         <CalorieForm onSubmit={this.props.onSubmit}/>
@@ -65,7 +69,6 @@ export default class Home extends React.Component {
       }
       let snackCal = snacks.map(item => item.calories)
       snackCal = snackCal.reduce((a, b) => a + b, 0)
-      const percentage = 80
       return (
         <Grid
           container
@@ -76,7 +79,7 @@ export default class Home extends React.Component {
           <div className="mt-5">
             <p className="float-right">Goal: {this.props.goal} cal</p>
             <div style={styles.circle} className="ml-5">
-              <StyledProgressbar text={`${percentage}%`} percentage={percentage}/>
+              <StyledProgressbar text={calorieDifference} percentage={caloriePercentage}/>
             </div>
             <div className="text-center ml-5 mt-4">
               <Button color="primary" href='#add-food-item'>Add Food Item</Button>
