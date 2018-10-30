@@ -1,5 +1,11 @@
 {
-  "users": [],
+  "users": [
+    {
+      "weight": 165,
+      "calorieGoal": 2000,
+      "id": 1
+    }
+  ],
   "food-items": [],
   "meals": []
 }
