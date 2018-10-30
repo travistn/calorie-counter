@@ -46,9 +46,12 @@ export default class App extends React.Component {
     }
     return fetch('/food-items', req)
       .then(res => res.json())
-      .then(item => this.setState({
-        foodItems: [...this.state.foodItems, item]
-      }))
+      .then(item => {
+        this.setState({
+          foodItems: [...this.state.foodItems, item]
+        })
+        location.hash = '#home'
+      })
   }
   deleteItem(deleted) {
     const req = {
@@ -91,9 +94,12 @@ export default class App extends React.Component {
     }
     return fetch('/meals', req)
       .then(res => res.json())
-      .then(meal => this.setState({
-        meals: [...this.state.meals, meal]
-      }))
+      .then(meal => {
+        this.setState({
+          meals: [...this.state.meals, meal]
+        })
+        location.hash = '#home'
+      })
   }
   deleteMeal(deleted) {
     const req = {
