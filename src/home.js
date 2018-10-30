@@ -3,7 +3,6 @@ import CalorieForm from './calorie-budget'
 import Grid from '@material-ui/core/Grid'
 import { Card, CardTitle, CardText, Button } from 'reactstrap'
 import StyledProgressbar from './styled-progress-bar'
-import { relative } from 'path';
 
 const styles = {
   icon: {
