@@ -1,6 +1,7 @@
 import React from 'react'
 import Grid from '@material-ui/core/Grid'
 import { Card, CardBody, CardText, Button } from 'reactstrap'
+import StyledProgressbar from './styled-progress-bar'
 
 const styles = {
   font: {
@@ -14,6 +15,9 @@ const styles = {
   editIcon: {
     fontSize: '17px',
     cusror: 'pointer'
+  },
+  circle: {
+    width: '85%'
   }
 }
 
@@ -24,7 +28,8 @@ export default function FoodItemsList({ foodList, deleteOnClick }) {
         container
         direction="column"
         justify="center"
-        alignItems="center">
+        alignItems="center"
+        className="mt-5">
         <h2 className="mt-4">List of Food Items</h2>
         <h6 className="mt-4">{"There doesn't seem to be anything here, let's start adding!"}</h6>
         <Button color="primary" href='#add-food-item' className="mt-4">Add Food Item</Button>
