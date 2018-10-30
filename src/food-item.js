@@ -35,7 +35,8 @@ export default class FoodItem extends React.Component {
         container
         direction="column"
         justify="center"
-        alignItems="center">
+        alignItems="center"
+        className="mt-5">
         <div>
           <h2 className="mt-4">Add Food Item</h2>
         </div>

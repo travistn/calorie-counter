@@ -45,7 +45,7 @@ export default class CalorieForm extends React.Component {
               margin="normal"
               onChange={this.handleChange}
               value={value}/>
-              <FormHelperText>Required*</FormHelperText>
+            <FormHelperText>Required*</FormHelperText>
           </FormGroup>
           <FormGroup>
             <TextField

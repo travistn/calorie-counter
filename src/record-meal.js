@@ -41,7 +41,8 @@ export default class RecordMeal extends React.Component {
         container
         direction="column"
         justify="center"
-        alignItems="center">
+        alignItems="center"
+        className="mt-5">
         <div>
           <h2 className="mt-4">Record Your Meal</h2>
         </div>

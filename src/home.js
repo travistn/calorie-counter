@@ -2,6 +2,7 @@ import React from 'react'
 import CalorieForm from './calorie-budget'
 import Grid from '@material-ui/core/Grid'
 import { Card, CardTitle, CardText, Button } from 'reactstrap'
+import StyledProgressbar from './styled-progress-bar'
 
 const styles = {
   icon: {
@@ -15,11 +16,31 @@ const styles = {
     color: '#78C1AD',
     cursor: 'pointer',
     fontSize: '15px'
+  },
+  circle: {
+    width: '85%'
+  },
+  calories: {
+    position: 'relative',
+    bottom: '4rem',
+    left: '3.7rem'
+  },
+  caloriesConsumed: {
+    position: 'relative',
+    left: '1rem'
+  },
+  goal: {
+    position: 'relative',
+    left: '5rem'
   }
 }
 
 export default class Home extends React.Component {
   render() {
+    let caloriesConsumed = this.props.meals.map(meal => meal.calories)
+    caloriesConsumed = caloriesConsumed.reduce((a, b) => a + b, 0)
+    const calorieDifference = this.props.goal - caloriesConsumed
+    const caloriePercentage = (caloriesConsumed / this.props.goal) * 100
     if (this.props.user === 0) {
       return (
         <CalorieForm onSubmit={this.props.onSubmit}/>
@@ -69,8 +90,14 @@ export default class Home extends React.Component {
           alignItems="center"
           href="#home">
           <div className="mt-5">
-            <p className="float-right">Goal: {this.props.goal} cal</p>
-            <div className="text-center ml-5 mt-5">
+            <span className="float-right" style={styles.goal}>Goal: {this.props.goal} cal</span>
+            <span className="w-25" style={styles.caloriesConsumed} >{`Eaten: ${caloriesConsumed}`}
+            </span>
+            <div style={styles.circle} className="ml-5 mt-4">
+              <StyledProgressbar text={calorieDifference} percentage={caloriePercentage}/>
+              <p style={styles.calories}>cals left</p>
+            </div>
+            <div className="text-center ml-5">
               <Button color="primary" href='#add-food-item'>Add Food Item</Button>
             </div>
             <div className="text-center ml-5 mt-4">
