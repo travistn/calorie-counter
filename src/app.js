@@ -130,7 +130,8 @@ export default class App extends React.Component {
       case 'dinner':
       case 'snacks':
         return <RecordMeal foodItems={foodItems} mealType={path} onSubmit={this.recordMeal}/>
-      default:
+      case 'history':
+        default:
         const goal = user.map(user => user.calorieGoal)
         return <Home user={user.length} onSubmit={this.addBudget} goal={goal}
           meals={meals} deleteOnClick={this.deleteMeal}/>
