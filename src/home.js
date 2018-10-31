@@ -18,20 +18,25 @@ const styles = {
     fontSize: '15px'
   },
   circle: {
-    width: '85%'
+    width: '85%',
+    position: 'relative',
+    right: '1.5rem'
   },
   calories: {
     position: 'relative',
-    bottom: '4rem',
-    left: '3.7rem'
+    bottom: '5rem',
+    left: '5.5rem'
   },
   caloriesConsumed: {
     position: 'relative',
-    left: '1rem'
+    left: '1.5rem'
   },
   goal: {
     position: 'relative',
-    left: '5rem'
+    left: '1rem'
+  },
+  card: {
+    width: '15rem'
   }
 }
 
@@ -91,19 +96,18 @@ export default class Home extends React.Component {
           href="#home">
           <div className="mt-5">
             <span className="float-right" style={styles.goal}>Goal: {this.props.goal} cal</span>
-            <span className="w-25" style={styles.caloriesConsumed} >{`Eaten: ${caloriesConsumed}`}
-            </span>
+            <span style={styles.caloriesConsumed} >{`Eaten: ${caloriesConsumed}`}</span>
             <div style={styles.circle} className="ml-5 mt-4">
               <StyledProgressbar text={calorieDifference} percentage={caloriePercentage}/>
               <p style={styles.calories}>cals left</p>
             </div>
-            <div className="text-center ml-5">
+            <div className="text-center">
               <Button color="primary" href='#add-food-item'>Add Food Item</Button>
             </div>
-            <div className="text-center ml-5 mt-4">
+            <div className="text-center mt-4">
               <Button color="primary" href="#list-of-food-items">View Food Items</Button>
             </div>
-            <Card body className="shadow sm m-4 w-100">
+            <Card body className="shadow sm m-4" style={styles.card}>
               <CardTitle className="h6"><span className="mr-2">🥞</span> Breakfast
                 <a href="#breakfast">
                   <i className="fa fa-plus-circle float-right" style={styles.icon}></i>
@@ -118,7 +122,7 @@ export default class Home extends React.Component {
                 </span>
               </CardText>
             </Card>
-            <Card body className="shadow sm m-4 w-100">
+            <Card body className="shadow sm m-4" style={styles.card}>
               <CardTitle className="h6"><span className="mr-2">🥪</span> Lunch
                 <a href="#lunch">
                   <i className="fa fa-plus-circle float-right" style={styles.icon}></i>
@@ -133,7 +137,7 @@ export default class Home extends React.Component {
                 </span>
               </CardText>
             </Card>
-            <Card body className="shadow sm m-4 w-100">
+            <Card body className="shadow sm m-4" style={styles.card}>
               <CardTitle className="h6"><span className="mr-2">🥩</span> Dinner
                 <a href="#dinner">
                   <i className="fa fa-plus-circle float-right" style={styles.icon}></i>
@@ -148,7 +152,7 @@ export default class Home extends React.Component {
                 </span>
               </CardText>
             </Card>
-            <Card body className="shadow sm m-4 w-100">
+            <Card body className="shadow sm m-4" style={styles.card}>
               <CardTitle className="h6"><span className="mr-2">🍪</span> Snacks
                 <a href="#snacks">
                   <i className="fa fa-plus-circle float-right" style={styles.icon}></i>
