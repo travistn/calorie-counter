@@ -4,10 +4,16 @@ import { Navbar, NavbarBrand, NavItem, NavLink, Nav } from 'reactstrap'
 const styles = {
   navBar: {
     color: 'white'
+  },
+  date: {
+    color: 'white',
+    position: 'fixed',
+    right: '0',
+    bottom: '0'
   }
 }
 
-export default function NavBar() {
+export default function NavBar({ date }) {
   return (
     <div>
       <Navbar color="secondary" light expand="md" className="fixed-bottom">
@@ -20,6 +26,9 @@ export default function NavBar() {
           </NavItem>
           <NavItem>
             <NavLink href="#history" style={styles.navBar}>History</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink style={styles.navBar}>{date}</NavLink>
           </NavItem>
         </Nav>
       </Navbar>

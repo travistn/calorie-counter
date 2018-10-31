@@ -7,6 +7,10 @@ import EditFoodItem from './edit-food-item'
 import RecordMeal from './record-meal'
 import NavBar from './nav-bar'
 
+let date = require('date-and-time')
+let now = new Date()
+const today = date.format(now, 'MM/DD/YY')
+
 export default class App extends React.Component {
   constructor(props) {
     super(props)
@@ -15,6 +19,7 @@ export default class App extends React.Component {
       user: [],
       foodItems: [],
       meals: [],
+      date: today,
       view: { path, params }
     }
     this.addBudget = this.addBudget.bind(this)
@@ -116,7 +121,7 @@ export default class App extends React.Component {
   }
   renderView() {
     const { path, params } = this.state.view
-    const { user, foodItems, meals } = this.state
+    const { user, foodItems, meals, date } = this.state
     switch (path) {
       case 'add-food-item':
         return <FoodItem onSubmit={this.addFoodItem}/>
@@ -129,9 +134,10 @@ export default class App extends React.Component {
       case 'lunch':
       case 'dinner':
       case 'snacks':
-        return <RecordMeal foodItems={foodItems} mealType={path} onSubmit={this.recordMeal}/>
+        return <RecordMeal foodItems={foodItems} mealType={path}
+          onSubmit={this.recordMeal} date={date}/>
       case 'history':
-        default:
+      default:
         const goal = user.map(user => user.calorieGoal)
         return <Home user={user.length} onSubmit={this.addBudget} goal={goal}
           meals={meals} deleteOnClick={this.deleteMeal}/>
@@ -158,7 +164,7 @@ export default class App extends React.Component {
     return (
       <div>
         {this.renderView()}
-        <NavBar/>
+        <NavBar date={this.state.date}/>
       </div>
     )
   }

@@ -18,7 +18,9 @@ export default class CurrentDate extends React.Component {
   }
   render() {
     return (
-      <DatePicker selected={this.state.startDate} onChange={this.handleChange}/>
+      <DatePicker
+        selected={this.state.startDate}
+        onChange={this.handleChange}/>
     )
   }
 }

@@ -3,7 +3,6 @@ import CalorieForm from './calorie-budget'
 import Grid from '@material-ui/core/Grid'
 import { Card, CardTitle, CardText, Button } from 'reactstrap'
 import StyledProgressbar from './styled-progress-bar'
-import CurrentDate from './date'
 
 const styles = {
   icon: {
@@ -26,16 +25,15 @@ const styles = {
   calories: {
     position: 'relative',
     bottom: '4rem',
-    left: '3.7rem'
+    left: '3.9rem'
+  },
+  caloriesConsumed: {
+    position: 'relative',
+    left: '1rem'
   },
   goal: {
     position: 'relative',
-    left: '4rem'
-  },
-  date: {
-    position: 'relative',
-    right: '3rem',
-    top: '2rem'
+    left: '4.5rem'
   }
 }
 
@@ -94,12 +92,8 @@ export default class Home extends React.Component {
           alignItems="center"
           href="#home">
           <div className="mt-5">
-            <span style={styles.date}>
-              <CurrentDate/>
-            </span>
-            <div className="float-right" style={styles.goal}>Goal: {this.props.goal} cal
-              <p className="mt-1">{`Eaten: ${caloriesConsumed}`}</p>
-            </div>
+            <span className="float-right" style={styles.goal}>Goal: {this.props.goal} cal</span>
+            <span style={styles.caloriesConsumed} >{`Eaten: ${caloriesConsumed}`}</span>
             <div style={styles.circle} className="ml-5 mt-4">
               <StyledProgressbar text={calorieDifference} percentage={caloriePercentage}/>
               <p style={styles.calories}>cals left</p>

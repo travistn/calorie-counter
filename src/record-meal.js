@@ -9,7 +9,8 @@ export default class RecordMeal extends React.Component {
       foodName: '',
       calories: '',
       servingSize: '',
-      mealType: this.props.mealType
+      mealType: this.props.mealType,
+      date: this.props.date
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleInputChange = this.handleInputChange.bind(this)
