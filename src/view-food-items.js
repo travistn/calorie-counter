@@ -17,6 +17,9 @@ const styles = {
   },
   circle: {
     width: '85%'
+  },
+  card: {
+    width: '15rem'
   }
 }
 
@@ -48,7 +51,7 @@ export default function FoodItemsList({ foodList, deleteOnClick }) {
             const foodId = item.id
             const url = `#edit-food-item?id=${foodId}`
             return (
-              <Card className="m-4 shadow sm w-25 border-light" key={index}>
+              <Card className="m-4 shadow sm border-light" style={styles.card} key={index}>
                 <CardBody>
                   <CardText className="text-center h6 text-danger">Looks good!</CardText>
                   <CardText className="mt-2" style={styles.font}>{item.foodName}
