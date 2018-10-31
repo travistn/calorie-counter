@@ -10,7 +10,7 @@ import History from './history'
 
 let date = require('date-and-time')
 let now = new Date()
-const today = date.format(now, 'MM/DD/YY')
+const today = date.format(now, 'YYYY-MM-DD')
 
 export default class App extends React.Component {
   constructor(props) {
@@ -120,6 +120,18 @@ export default class App extends React.Component {
         this.setState({ meals })
       })
   }
+  getHistory(meal) {
+    const req = {
+      method: 'GET'
+    }
+    return fetch(`/meals/${meal.id}`, req)
+      .then(() => {
+        const meals = this.state.meals.filter(item =>
+          item.date === this.state.date
+        )
+        this.setState({ meals })
+      })
+  }
   renderView() {
     const { path, params } = this.state.view
     const { user, foodItems, meals, date } = this.state
@@ -138,7 +150,7 @@ export default class App extends React.Component {
         return <RecordMeal foodItems={foodItems} mealType={path}
           onSubmit={this.recordMeal} date={date}/>
       case 'history':
-        return <History meals={meals}/>
+        return <History meals={meals} date={date}/>
       default:
         const goal = user.map(user => user.calorieGoal)
         return <Home user={user.length} onSubmit={this.addBudget} goal={goal}

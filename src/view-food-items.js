@@ -1,7 +1,6 @@
 import React from 'react'
 import Grid from '@material-ui/core/Grid'
 import { Card, CardBody, CardText, Button } from 'reactstrap'
-import StyledProgressbar from './styled-progress-bar'
 
 const styles = {
   font: {
