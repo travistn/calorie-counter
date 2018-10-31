@@ -120,18 +120,6 @@ export default class App extends React.Component {
         this.setState({ meals })
       })
   }
-  getHistory(meal) {
-    const req = {
-      method: 'GET'
-    }
-    return fetch(`/meals/${meal.id}`, req)
-      .then(() => {
-        const meals = this.state.meals.filter(item =>
-          item.date === this.state.date
-        )
-        this.setState({ meals })
-      })
-  }
   renderView() {
     const { path, params } = this.state.view
     const { user, foodItems, meals, date } = this.state
