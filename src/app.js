@@ -6,6 +6,7 @@ import FoodItemsList from './view-food-items'
 import EditFoodItem from './edit-food-item'
 import RecordMeal from './record-meal'
 import NavBar from './nav-bar'
+import History from './history'
 
 let date = require('date-and-time')
 let now = new Date()
@@ -137,6 +138,7 @@ export default class App extends React.Component {
         return <RecordMeal foodItems={foodItems} mealType={path}
           onSubmit={this.recordMeal} date={date}/>
       case 'history':
+        return <History meals={meals}/>
       default:
         const goal = user.map(user => user.calorieGoal)
         return <Home user={user.length} onSubmit={this.addBudget} goal={goal}
