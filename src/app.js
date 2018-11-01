@@ -7,6 +7,7 @@ import EditFoodItem from './edit-food-item'
 import RecordMeal from './record-meal'
 import NavBar from './nav-bar'
 import History from './history'
+import Progress from './progress'
 
 let date = require('date-and-time')
 let now = new Date()
@@ -139,6 +140,8 @@ export default class App extends React.Component {
           onSubmit={this.recordMeal} date={date}/>
       case 'history':
         return <History meals={meals} date={date}/>
+      case 'progress':
+        return <Progress/>
       default:
         const goal = user.map(user => user.calorieGoal)
         return <Home user={user.length} onSubmit={this.addBudget} goal={goal}

@@ -1,8 +1,9 @@
 import React from 'react'
 import { Line } from 'react-chartjs-2'
+import Grid from '@material-ui/core/Grid'
 
 const data = {
-  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+  labels: ['Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
   datasets: [
     {
       label: 'Calories Consumed',
@@ -23,7 +24,7 @@ const data = {
       pointHoverBorderWidth: 2,
       pointRadius: 1,
       pointHitRadius: 10,
-      data: [65, 59, 80, 81, 56, 55, 40]
+      data: [1900, 2200, 1700, 1950, 2100, 2050, 2000]
     }
   ]
 }
@@ -31,9 +32,20 @@ const data = {
 export default class Chart extends React.Component {
   render() {
     return (
-      <div>
-        <Line data={data}/>
-      </div>
+      <Grid
+        container
+        direction="column"
+        justify="center"
+        alignItems="center"
+        className="mt-5">
+        <div>
+          <h2 className="mt-4">See Your Progress</h2>
+        </div>
+        <div className="mt-4">
+          <Line data={data} width={375} height={250}
+            options={{maintainAspectRatio: false}}/>
+        </div>
+      </Grid>
     )
   }
 }
