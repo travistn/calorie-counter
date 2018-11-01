@@ -147,7 +147,7 @@ export default class App extends React.Component {
       default:
         const goal = user.map(user => user.calorieGoal)
         return <Home user={user.length} onSubmit={this.addBudget} goal={goal}
-          meals={meals} deleteOnClick={this.deleteMeal}/>
+          meals={meals} deleteOnClick={this.deleteMeal} date={date}/>
     }
   }
   componentDidMount() {

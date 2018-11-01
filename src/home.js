@@ -42,7 +42,8 @@ const styles = {
 
 export default class Home extends React.Component {
   render() {
-    let caloriesConsumed = this.props.meals.map(meal => meal.calories)
+    const caloriesToday = this.props.meals.filter(meal => meal.date === this.props.date)
+    let caloriesConsumed = caloriesToday.map(meal => meal.calories)
     caloriesConsumed = caloriesConsumed.reduce((a, b) => a + b, 0)
     const calorieDifference = this.props.goal - caloriesConsumed
     const caloriePercentage = (caloriesConsumed / this.props.goal) * 100
