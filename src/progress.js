@@ -3,8 +3,19 @@ import { Line } from 'react-chartjs-2'
 import Grid from '@material-ui/core/Grid'
 import { Form, FormGroup, Input } from 'reactstrap'
 
+const moment = require('moment')
+const today = moment().subtract(0, 'days').format('MM/DD')
+const yesterday = moment().subtract(1, 'days').format('MM/DD')
+const twoDays = moment().subtract(2, 'days').format('MM/DD')
+const threeDays = moment().subtract(3, 'days').format('MM/DD')
+const fourDays = moment().subtract(4, 'days').format('MM/DD')
+const fiveDays = moment().subtract(5, 'days').format('MM/DD')
+const sixDays = moment().subtract(6, 'days').format('MM/DD')
+const sevenDays = moment().subtract(7, 'days').format('MM/DD')
+const week = [sevenDays, sixDays, fiveDays, fourDays, threeDays, twoDays, yesterday, today]
+
 const data = {
-  labels: ['Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+  labels: week,
   datasets: [
     {
       label: 'Calories Consumed',
@@ -25,7 +36,7 @@ const data = {
       pointHoverBorderWidth: 2,
       pointRadius: 1,
       pointHitRadius: 10,
-      data: [1900, 2200, 1700, 1950, 2100, 2050, 2000]
+      data: [2000, 1900, 1800, 1950, 2100, 2400, 2000, 2100]
     }
   ]
 }

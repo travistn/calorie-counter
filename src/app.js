@@ -13,6 +13,8 @@ let date = require('date-and-time')
 let now = new Date()
 const today = date.format(now, 'YYYY-MM-DD')
 
+const _ = require('lodash')
+
 export default class App extends React.Component {
   constructor(props) {
     super(props)
