@@ -1,6 +1,7 @@
 import React from 'react'
 import { Line } from 'react-chartjs-2'
 import Grid from '@material-ui/core/Grid'
+import { Form, FormGroup, Input } from 'reactstrap'
 
 const data = {
   labels: ['Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
@@ -41,8 +42,16 @@ export default class Chart extends React.Component {
         <div>
           <h2 className="mt-4">See Your Progress</h2>
         </div>
+        <Form className="mt-4">
+          <FormGroup>
+            <Input type="select">
+              <option>Weekly</option>
+              <option>Monthly</option>
+            </Input>
+          </FormGroup>
+        </Form>
         <div className="mt-4">
-          <Line data={data} width={375} height={250}
+          <Line data={data} width={375} height={300}
             options={{maintainAspectRatio: false}}/>
         </div>
       </Grid>
