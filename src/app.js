@@ -13,8 +13,6 @@ let date = require('date-and-time')
 let now = new Date()
 const today = date.format(now, 'YYYY-MM-DD')
 
-const _ = require('lodash')
-
 export default class App extends React.Component {
   constructor(props) {
     super(props)
@@ -143,7 +141,7 @@ export default class App extends React.Component {
       case 'history':
         return <History meals={meals} date={date}/>
       case 'progress':
-        return <Progress/>
+        return <Progress meals={meals}/>
       default:
         const goal = user.map(user => user.calorieGoal)
         return <Home user={user.length} onSubmit={this.addBudget} goal={goal}
