@@ -53,7 +53,7 @@ export default class Home extends React.Component {
       )
     }
     if (this.props.user > 0) {
-      const breakfast = this.props.meals.filter(item => item.mealType === 'breakfast')
+      const breakfast = this.props.meals.filter(item => item.mealType === 'breakfast' && item.date === this.props.date)
       const deleteBreakfast = this.props.meals.find(item => item.mealType === 'breakfast')
       let breakfastFood = breakfast.map(item => item.foodName)
       if (breakfastFood.length > 1) {
@@ -62,7 +62,7 @@ export default class Home extends React.Component {
       let breakfastCal = breakfast.map(item => item.calories)
       breakfastCal = breakfastCal.reduce((a, b) => a + b, 0)
 
-      const lunch = this.props.meals.filter(item => item.mealType === 'lunch')
+      const lunch = this.props.meals.filter(item => item.mealType === 'lunch' && item.date === this.props.date)
       const deleteLunch = this.props.meals.find(item => item.mealType === 'lunch')
       let lunchFood = lunch.map(item => item.foodName)
       if (lunchFood.length > 1) {
@@ -71,7 +71,7 @@ export default class Home extends React.Component {
       let lunchCal = lunch.map(item => item.calories)
       lunchCal = lunchCal.reduce((a, b) => a + b, 0)
 
-      const dinner = this.props.meals.filter(item => item.mealType === 'dinner')
+      const dinner = this.props.meals.filter(item => item.mealType === 'dinner' && item.date === this.props.date)
       const deleteDinner = this.props.meals.find(item => item.mealType === 'dinner')
       let dinnerFood = dinner.map(item => item.foodName)
       if (dinnerFood.length > 1) {
@@ -80,7 +80,7 @@ export default class Home extends React.Component {
       let dinnerCal = dinner.map(item => item.calories)
       dinnerCal = dinnerCal.reduce((a, b) => a + b, 0)
 
-      const snacks = this.props.meals.filter(item => item.mealType === 'snacks')
+      const snacks = this.props.meals.filter(item => item.mealType === 'snacks' && item.date === this.props.date)
       const deleteSnack = this.props.meals.find(item => item.mealType === 'snacks')
       let snackFood = snacks.map(item => item.foodName)
       if (snackFood.length > 1) {
