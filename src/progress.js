@@ -24,9 +24,14 @@ const sixDaysCalories = moment().subtract(6, 'days').format('YYYY-MM-DD')
 const sevenDaysCalories = moment().subtract(7, 'days').format('YYYY-MM-DD')
 
 const thisMonth = moment().subtract(0, 'month').format('MMM/YY')
-const monthAgo = moment().subtract(1, 'month').format('MMM/YY')
+const lastMonth = moment().subtract(1, 'month').format('MMM/YY')
 const twoMonthsAgo = moment().subtract(2, 'month').format('MMM/YY')
-const month = [twoMonthsAgo, monthAgo, thisMonth]
+const month = [twoMonthsAgo, lastMonth, thisMonth]
+
+const thisMonthCalories = moment().subtract(0, 'month').format('YYYY-MM')
+const lastMonthCalories = moment().subtract(1, 'month').format('YYYY-MM')
+const lastTwoMonthsCalories = moment().subtract(2, 'month').format('YYYY-MM')
+
 
 export default class Chart extends React.Component {
   constructor(props) {
@@ -76,6 +81,33 @@ export default class Chart extends React.Component {
 
     const weekly = [caloriesConsumedSevenDays, caloriesConsumedSixDays, caloriesConsumedFiveDays,
       caloriesConsumedFourDays, caloriesConsumedThreeDays, caloriesConsumedTwoDays, caloriesConsumedYesterday, caloriesConsumedToday]
+
+    const caloriesLastMonth = this.props.meals.filter(meal => {
+      if (meal.date.includes(lastMonthCalories)) {
+        return meal.date
+      }
+    })
+    let caloriesConsumedLastMonth = caloriesLastMonth.map(meal => meal.calories)
+    caloriesConsumedLastMonth = caloriesConsumedLastMonth.reduce((a, b) => a + b, 0)
+
+    const caloriesThisMonth = this.props.meals.filter(meal => {
+      if (meal.date.includes(thisMonthCalories)) {
+        return meal.date
+      }
+    })
+    let caloriesConsumedThisMonth = caloriesThisMonth.map(meal => meal.calories)
+    caloriesConsumedThisMonth = caloriesConsumedThisMonth.reduce((a, b) => a + b, 0)
+
+    const caloriesLastTwoMonths = this.props.meals.filter(meal => {
+      if (meal.date.includes(lastTwoMonthsCalories)) {
+        return meal.date
+      }
+    })
+    let caloriesConsumedLastTwoMonths = caloriesLastTwoMonths.map(meal => meal.calories)
+    caloriesConsumedLastTwoMonths = caloriesConsumedLastTwoMonths.reduce((a, b) => a + b, 0)
+
+    const monthly = [caloriesConsumedLastTwoMonths, caloriesConsumedLastMonth, caloriesConsumedThisMonth]
+
     let data = {
       weeklyData: {
         labels: week,
@@ -125,7 +157,7 @@ export default class Chart extends React.Component {
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: []
+            data: monthly
           }
         ]
       }
