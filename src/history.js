@@ -23,7 +23,6 @@ export default class History extends React.Component {
     this.setState({
       date: event.target.value
     })
-    console.log(this.state.date)
   }
   render() {
     const { value } = this.state
