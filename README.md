@@ -53,3 +53,19 @@ A mobile-first web application for health nuts who want to keep track of their d
 **10. User can see their progress**
 
 ![see-progress](https://user-images.githubusercontent.com/42354863/47943824-469de580-deb5-11e8-8bd1-ce0ca4f6d373.gif)
+
+#### Usage 
+Clone and install dependencies.
+```
+gitclone https://github.com/travistn/calorie-counter.git
+cd calorie-counter
+npm install
+````
+Create a '.env' file in the project root. Example:
+```
+PORT=3000
+```
+Run the app
+```
+npm run watch
+``````
