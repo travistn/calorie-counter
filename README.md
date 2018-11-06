@@ -60,7 +60,7 @@ Clone and install dependencies.
 gitclone https://github.com/travistn/calorie-counter.git
 cd calorie-counter
 npm install
-````
+```
 Create a '.env' file in the project root. Example:
 ```
 PORT=3000
@@ -68,4 +68,4 @@ PORT=3000
 Run the app
 ```
 npm run watch
-``````
+```
