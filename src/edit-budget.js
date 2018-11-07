@@ -4,12 +4,18 @@ import FormHelperText from '@material-ui/core/FormHelperText'
 import TextField from '@material-ui/core/TextField'
 import { Form, FormGroup, Button } from 'reactstrap'
 
+const styles = {
+  goal: {
+    marginLeft: '2.2rem'
+  }
+}
+
 export default class EditBudget extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      weight: '',
-      calorieGoal: ''
+      weight: this.props.weight,
+      calorieGoal: this.props.goal
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -26,7 +32,6 @@ export default class EditBudget extends React.Component {
     this.props.onSubmit(user)
   }
   render() {
-    const { value } = this.state
     return (
       <Grid
         container
@@ -37,29 +42,27 @@ export default class EditBudget extends React.Component {
           onSubmit={this.handleSubmit}
           className="mt-5">
           <h2 className="text-center">Edit the basics</h2>
-          <FormGroup>
+          <FormGroup className="text-center">
             <TextField
               name="weight"
               label="Your weight"
-              className="classes.textField mt-5"
               margin="normal"
               onChange={this.handleChange}
-              value={value}/>
-            <FormHelperText>Required*</FormHelperText>
+              value={this.state.weight}/>
+            <FormHelperText style={styles.goal}>Required*</FormHelperText>
           </FormGroup>
-          <FormGroup>
+          <FormGroup className="text-center">
             <TextField
               name="calorieGoal"
               label="Calories per day"
-              className="classes.textField"
               margin="normal"
               type="number"
               onChange={this.handleChange}
-              value={value}/>
-            <FormHelperText>Required*</FormHelperText>
+              value={this.state.calorieGoal}/>
+            <FormHelperText style={styles.goal}>Required*</FormHelperText>
           </FormGroup>
-          <div className="mt-4 w-100">
-            <Button color="secondary">Let's get started!</Button>
+          <div className="mt-4 text-center">
+            <Button color="secondary">Save</Button>
           </div>
         </Form>
       </Grid>
