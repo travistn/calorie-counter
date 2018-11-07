@@ -42,7 +42,7 @@ export default class EditBudget extends React.Component {
           onSubmit={this.handleSubmit}
           className="mt-5">
           <h2 className="text-center">Edit the basics</h2>
-          <FormGroup className="text-center">
+          <FormGroup className="text-center mt-5">
             <TextField
               name="weight"
               label="Your weight"
