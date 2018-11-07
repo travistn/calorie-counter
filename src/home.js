@@ -29,11 +29,14 @@ const styles = {
   },
   caloriesConsumed: {
     position: 'relative',
-    left: '1.5rem'
+    left: '1.5rem',
+    color: '#64CC9D'
   },
   goal: {
     position: 'relative',
-    left: '1rem'
+    left: '1rem',
+    cursor: 'pointer',
+    color: '#64CC9D'
   },
   card: {
     width: '15rem'
@@ -96,7 +99,9 @@ export default class Home extends React.Component {
           alignItems="center"
           href="#home">
           <div className="mt-5">
-            <span className="float-right" style={styles.goal}>Goal: {this.props.goal} cal</span>
+            <a href="#goal">
+              <span className="float-right" style={styles.goal}>Goal: {this.props.goal} cal</span>
+            </a>
             <span style={styles.caloriesConsumed} >{`Eaten: ${caloriesConsumed}`}</span>
             <div style={styles.circle} className="ml-5 mt-4">
               <StyledProgressbar text={calorieDifference} percentage={caloriePercentage}/>

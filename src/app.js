@@ -8,6 +8,7 @@ import RecordMeal from './record-meal'
 import NavBar from './nav-bar'
 import History from './history'
 import Progress from './progress'
+import EditBudget from './edit-budget'
 
 let date = require('date-and-time')
 let now = new Date()
@@ -30,6 +31,7 @@ export default class App extends React.Component {
     this.editFoodItem = this.editFoodItem.bind(this)
     this.recordMeal = this.recordMeal.bind(this)
     this.deleteMeal = this.deleteMeal.bind(this)
+    this.editBudget = this.editBudget.bind(this)
   }
   addBudget(newUser) {
     const req = {
@@ -121,9 +123,24 @@ export default class App extends React.Component {
         this.setState({ meals })
       })
   }
+  editBudget(user) {
+    const userId = this.state.user.find(user => user.id)
+    const req = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(user)
+    }
+    return fetch(`/users/${userId.id}`, req)
+      .then(res => res.json())
+      .then(user => {
+        this.setState({ user })
+        location.hash = '#home'
+      })
+  }
   renderView() {
     const { path, params } = this.state.view
     const { user, foodItems, meals, date } = this.state
+    const userId = user.find(user => user.id)
     switch (path) {
       case 'add-food-item':
         return <FoodItem onSubmit={this.addFoodItem}/>
@@ -142,6 +159,9 @@ export default class App extends React.Component {
         return <History meals={meals} date={date}/>
       case 'progress':
         return <Progress meals={meals}/>
+      case 'goal':
+        return <EditBudget weight={userId.weight} goal={userId.calorieGoal}
+          onSubmit={this.editBudget}/>
       default:
         const goal = user.map(user => user.calorieGoal)
         return <Home user={user.length} onSubmit={this.addBudget} goal={goal}
