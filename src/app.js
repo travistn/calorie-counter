@@ -14,6 +14,8 @@ let date = require('date-and-time')
 let now = new Date()
 const today = date.format(now, 'YYYY-MM-DD')
 
+const key = 'appId=78710bc1&appKey=6198d4d14f69acc0e05e814d6bb55423'
+
 export default class App extends React.Component {
   constructor(props) {
     super(props)
@@ -135,6 +137,18 @@ export default class App extends React.Component {
       .then(user => {
         this.setState({ user })
         location.hash = '#home'
+      })
+  }
+  getFoodItem(item) {
+    const req = {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify()
+    }
+    return fetch(`https://api.nutritionix.com/v1_1/search/${item}?results=0%3A20&cal_min=0&cal_max=50000&fields=item_name%2Cbrand_name%2Citem_id%2Cbrand_id&${key}`, req)
+      .then(res => res.json)
+      .then(item => {
+        this.setState({ searchedItems: item })
       })
   }
   renderView() {
