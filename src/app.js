@@ -143,9 +143,9 @@ export default class App extends React.Component {
     const req = {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify()
+      body: JSON.stringify(item)
     }
-    return fetch(`https://api.nutritionix.com/v1_1/search/${item}?results=0%3A20&cal_min=0&cal_max=50000&fields=item_name%2Cbrand_name%2Citem_id%2Cbrand_id&${key}`, req)
+    return fetch(`https://api.nutritionix.com/v1_1/search/${foodItem}?results=0%3A20&cal_min=0&cal_max=50000&fields=item_name%2Cbrand_name%2Citem_id%2Cbrand_id&${key}`, req)
       .then(res => res.json)
       .then(item => {
         this.setState({ searchedItems: item })
