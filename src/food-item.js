@@ -48,7 +48,7 @@ export default class FoodItem extends React.Component {
               className="w-100 text-center mt-4"
               value={value}
               onChange={this.handleChange}/>
-            <i className="fas fa-search"></i>
+            <i className="fas fa-search" onClick={this.props.searchFood}></i>
           </FormGroup>
           <FormControl className="mt-4">
             <Input

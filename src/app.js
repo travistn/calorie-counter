@@ -34,6 +34,7 @@ export default class App extends React.Component {
     this.recordMeal = this.recordMeal.bind(this)
     this.deleteMeal = this.deleteMeal.bind(this)
     this.editBudget = this.editBudget.bind(this)
+    this.getFoodItem = this.getFoodItem.bind(this)
   }
   addBudget(newUser) {
     const req = {
@@ -157,7 +158,7 @@ export default class App extends React.Component {
     const userId = user.find(user => user.id)
     switch (path) {
       case 'add-food-item':
-        return <FoodItem onSubmit={this.addFoodItem}/>
+        return <FoodItem onSubmit={this.addFoodItem} searchItem={this.addFoodItem}/>
       case 'list-of-food-items':
         return <FoodItemsList foodList={foodItems} deleteOnClick={this.deleteItem}/>
       case 'edit-food-item':
