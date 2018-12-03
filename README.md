@@ -1,5 +1,5 @@
 # calorie-counter
-A mobile-first web application for health nuts who want to keep track of their daily calorie consumption.
+A mobile-first web application for health enthusiasts who want to keep track of their daily calorie consumption.
 
 #### [Live Demo](https://travistn-calorie-counter.herokuapp.com/)
 
