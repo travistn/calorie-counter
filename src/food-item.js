@@ -6,15 +6,19 @@ import FormControl from '@material-ui/core/FormControl'
 import Input from '@material-ui/core/Input'
 import InputAdornment from '@material-ui/core/InputAdornment'
 
+const key = 'appId=78710bc1&appKey=6198d4d14f69acc0e05e814d6bb55423'
+
 export default class FoodItem extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       foodName: '',
-      calories: ''
+      calories: '',
+      results: []
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.getFoodItem = this.getFoodItem.bind(this)
   }
   handleChange(event) {
     const form = event.target
@@ -27,6 +31,18 @@ export default class FoodItem extends React.Component {
     const user = Object.assign({}, this.state)
     this.props.onSubmit(user)
     event.target.reset()
+  }
+  getFoodItem(item) {
+    const req = {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(item)
+    }
+    return fetch(`https://api.nutritionix.com/v1_1/search/${this.state.foodName}?results=0%3A20&cal_min=0&cal_max=50000&fields=item_name%2Cbrand_name%2Citem_id%2Cbrand_id&${key}`, req)
+      .then(res => res.json)
+      .then(foodItem => {
+        this.setState({ results: foodItem.data })
+      })
   }
   render() {
     const { value } = this.state
@@ -48,7 +64,6 @@ export default class FoodItem extends React.Component {
               className="w-100 text-center mt-4"
               value={value}
               onChange={this.handleChange}/>
-            <i className="fas fa-search" onClick={this.props.searchFood}></i>
           </FormGroup>
           <FormControl className="mt-4">
             <Input

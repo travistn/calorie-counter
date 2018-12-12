@@ -34,7 +34,6 @@ export default class App extends React.Component {
     this.recordMeal = this.recordMeal.bind(this)
     this.deleteMeal = this.deleteMeal.bind(this)
     this.editBudget = this.editBudget.bind(this)
-    this.getFoodItem = this.getFoodItem.bind(this)
   }
   addBudget(newUser) {
     const req = {
@@ -140,25 +139,13 @@ export default class App extends React.Component {
         location.hash = '#home'
       })
   }
-  getFoodItem(item) {
-    const req = {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(item)
-    }
-    return fetch(`https://api.nutritionix.com/v1_1/search/${foodItem}?results=0%3A20&cal_min=0&cal_max=50000&fields=item_name%2Cbrand_name%2Citem_id%2Cbrand_id&${key}`, req)
-      .then(res => res.json)
-      .then(item => {
-        this.setState({ searchedItems: item })
-      })
-  }
   renderView() {
     const { path, params } = this.state.view
     const { user, foodItems, meals, date } = this.state
     const userId = user.find(user => user.id)
     switch (path) {
       case 'add-food-item':
-        return <FoodItem onSubmit={this.addFoodItem} searchItem={this.addFoodItem}/>
+        return <FoodItem onSubmit={this.addFoodItem}/>
       case 'list-of-food-items':
         return <FoodItemsList foodList={foodItems} deleteOnClick={this.deleteItem}/>
       case 'edit-food-item':
