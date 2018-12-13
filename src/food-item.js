@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField'
 import FormControl from '@material-ui/core/FormControl'
 import Input from '@material-ui/core/Input'
 import InputAdornment from '@material-ui/core/InputAdornment'
+import axios from 'axios'
 
 const key = 'appId=78710bc1&appKey=6198d4d14f69acc0e05e814d6bb55423'
 
@@ -24,7 +25,14 @@ export default class FoodItem extends React.Component {
     const form = event.target
     this.setState({
       [form.name]: form.value
-    })
+    }, () => {
+      if (this.state.foodName && this.state.foodName.length > 1) {
+        if (this.state.foodName.length % 2 === 0) {
+          this.getFoodItem()
+        }
+      }
+    }
+    )
   }
   handleSubmit(event) {
     event.preventDefault()
@@ -33,19 +41,15 @@ export default class FoodItem extends React.Component {
     event.target.reset()
   }
   getFoodItem(item) {
-    const req = {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(item)
-    }
-    return fetch(`https://api.nutritionix.com/v1_1/search/${this.state.foodName}?results=0%3A20&cal_min=0&cal_max=50000&fields=item_name%2Cbrand_name%2Citem_id%2Cbrand_id&${key}`, req)
+    axios.get(`https://api.nutritionix.com/v1_1/search/${this.state.foodName}?results=0%3A20&cal_min=0&cal_max=50000&fields=item_name%2Cbrand_name%2Citem_id%2Cbrand_id&${key}`)
       .then(res => res.json)
       .then(foodItem => {
-        this.setState({ results: foodItem.data })
+        this.setState({ results: foodItem })
       })
   }
   render() {
     const { value } = this.state
+    console.log(this.state.results)
     return (
       <Grid
         container
@@ -64,6 +68,7 @@ export default class FoodItem extends React.Component {
               className="w-100 text-center mt-4"
               value={value}
               onChange={this.handleChange}/>
+            <i className="fas fa-search" onClick={this.getFoodItem}></i>
           </FormGroup>
           <FormControl className="mt-4">
             <Input
