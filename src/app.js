@@ -14,6 +14,8 @@ let date = require('date-and-time')
 let now = new Date()
 const today = date.format(now, 'YYYY-MM-DD')
 
+const key = 'appId=78710bc1&appKey=6198d4d14f69acc0e05e814d6bb55423'
+
 export default class App extends React.Component {
   constructor(props) {
     super(props)
