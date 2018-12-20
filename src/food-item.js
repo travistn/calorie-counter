@@ -50,6 +50,18 @@ export default class FoodItem extends React.Component {
       .then(res => {
         this.setState({ results: res.data.common })
       })
+    axios.post(`https://trackapi.nutritionix.com/v2/natural/nutrients`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'x-app-id': '78710bc1',
+        'x-app-key': '6198d4d14f69acc0e05e814d6bb55423',
+        'x-remote-user-id': '0'
+      },
+      body: {
+        'query': this.state.results.food_name,
+        'locale': 'en_US'
+      }
+    })
   }
   render() {
     const { value } = this.state
