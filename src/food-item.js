@@ -6,7 +6,7 @@ import FormControl from '@material-ui/core/FormControl'
 import Input from '@material-ui/core/Input'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import axios from 'axios'
-import Suggestions from './food-search'
+import Select from 'react-select'
 
 export default class FoodItem extends React.Component {
   constructor(props) {
@@ -65,6 +65,7 @@ export default class FoodItem extends React.Component {
   }
   render() {
     const { value } = this.state
+    const foodItems = this.state.results.map(item => Object.assign({label: item.food_name}))
     return (
       <Grid
         container
@@ -84,6 +85,7 @@ export default class FoodItem extends React.Component {
               value={value}
               onChange={this.handleChange}>
             </TextField>
+            <Select name="foodName" options={foodItems} onChange={this.handleChange} value={value} placeholder="Select a food item"/>
           </FormGroup>
           <FormControl className="mt-4">
             <Input
@@ -94,9 +96,6 @@ export default class FoodItem extends React.Component {
           </FormControl>
           <div className="mt-4 text-center">
             <Button color="primary">Save</Button>
-          </div>
-          <div className="mt-4">
-            <Suggestions results={this.state.results}/>
           </div>
         </Form>
       </Grid>
