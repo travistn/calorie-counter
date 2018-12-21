@@ -15,11 +15,13 @@ export default class FoodItem extends React.Component {
       foodName: '',
       calories: '',
       results: [],
-      suggestions: []
+      suggestions: [],
+      selectedOption: null
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.getFoodItem = this.getFoodItem.bind(this)
+    this.handleFoodChange = this.handleFoodChange.bind(this)
   }
   handleChange(event) {
     const form = event.target
@@ -39,6 +41,9 @@ export default class FoodItem extends React.Component {
     const user = Object.assign({}, this.state)
     this.props.onSubmit(user)
     event.target.reset()
+  }
+  handleFoodChange(selectedOption) {
+    this.setState({foodName: selectedOption})
   }
   getFoodItem() {
     axios.get(`https://trackapi.nutritionix.com/v2/search/instant?query=${this.state.foodName}`, {
@@ -85,7 +90,7 @@ export default class FoodItem extends React.Component {
               value={value}
               onChange={this.handleChange}>
             </TextField>
-            <Select name="foodName" options={foodItems} onChange={this.handleChange} value={value} placeholder="Select a food item"/>
+            <Select options={foodItems} onChange={this.handleFoodChange} value={value} placeholder="Select a food item"/>
           </FormGroup>
           <FormControl className="mt-4">
             <Input
