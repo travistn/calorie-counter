@@ -16,7 +16,7 @@ export default class FoodItem extends React.Component {
       calories: '',
       results: [],
       suggestions: [],
-      selectedOption: null
+      selectedOption: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -43,7 +43,7 @@ export default class FoodItem extends React.Component {
     event.target.reset()
   }
   handleFoodChange(selectedOption) {
-    this.setState({foodName: selectedOption})
+    this.setState({selectedOption: selectedOption})
   }
   getFoodItem() {
     axios.get(`https://trackapi.nutritionix.com/v2/search/instant?query=${this.state.foodName}`, {
