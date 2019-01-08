@@ -46,6 +46,7 @@ export default class FoodItem extends React.Component {
     this.setState({selectedOption: selectedOption})
   }
   getFoodItem() {
+    const foodItem = this.state.results.map(item => item.food_name)
     axios.get(`https://trackapi.nutritionix.com/v2/search/instant?query=${this.state.foodName}`, {
       headers: {
         'x-app-id': '78710bc1',
@@ -55,6 +56,18 @@ export default class FoodItem extends React.Component {
       .then(res => {
         this.setState({ results: res.data.common })
       })
+    const req = {
+      'query': this.state.foodName,
+      'num_servings': 0,
+      'line_delimited': false,
+      'use_raw_foods': false,
+      'include_subrecipe': false,
+      'lat': 0,
+      'lng': 0,
+      'meal_type': 0,
+      'use_branded_foods': false,
+      'locale': 'en_US'
+    }
     axios.post(`https://trackapi.nutritionix.com/v2/natural/nutrients`, {
       headers: {
         'Content-Type': 'application/json',
@@ -62,11 +75,11 @@ export default class FoodItem extends React.Component {
         'x-app-key': '6198d4d14f69acc0e05e814d6bb55423',
         'x-remote-user-id': '0'
       },
-      body: {
-        'query': this.state.results.food_name,
-        'locale': 'en_US'
-      }
+      data: req
     })
+      .then(res => {
+        this.setState({ suggestions: res })
+      })
   }
   render() {
     const { value } = this.state
