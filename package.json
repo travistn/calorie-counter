@@ -43,6 +43,7 @@
     "react-chartjs-2": "^2.7.4",
     "react-circular-progressbar": "^1.0.0",
     "react-dom": "16.5.2",
+    "react-select": "^2.1.2",
     "reactstrap": "^6.5.0"
   },
   "devDependencies": {
@@ -67,6 +68,6 @@
     "stylelint-config-standard": "18.2.0",
     "webpack": "4.20.2",
     "webpack-cli": "3.1.2",
-    "webpack-dev-server": "3.1.9"
+    "webpack-dev-server": "3.1.11"
   }
 }

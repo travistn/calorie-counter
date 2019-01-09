@@ -6,7 +6,7 @@ import FormControl from '@material-ui/core/FormControl'
 import Input from '@material-ui/core/Input'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import axios from 'axios'
-import Suggestions from './food-search'
+import Select from 'react-select'
 
 export default class FoodItem extends React.Component {
   constructor(props) {
@@ -15,11 +15,13 @@ export default class FoodItem extends React.Component {
       foodName: '',
       calories: '',
       results: [],
-      suggestions: []
+      suggestions: [],
+      selectedOption: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.getFoodItem = this.getFoodItem.bind(this)
+    this.handleFoodChange = this.handleFoodChange.bind(this)
   }
   handleChange(event) {
     const form = event.target
@@ -40,6 +42,28 @@ export default class FoodItem extends React.Component {
     this.props.onSubmit(user)
     event.target.reset()
   }
+  handleFoodChange(option) {
+    this.setState({selectedOption: option.label})
+    const data = {
+      query: this.state.foodName,
+      locale: 'en_US'
+    }
+    const req = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-app-id': '78710bc1',
+        'x-app-key': '6198d4d14f69acc0e05e814d6bb55423',
+        'x-remote-user-id': '0'
+      },
+      body: JSON.stringify(data)
+    }
+    return fetch('https://trackapi.nutritionix.com/v2/natural/nutrients', req)
+      .then(res => {
+        this.setState({ suggestions: res })
+        console.log(this.state.suggestions)
+      })
+  }
   getFoodItem() {
     axios.get(`https://trackapi.nutritionix.com/v2/search/instant?query=${this.state.foodName}`, {
       headers: {
@@ -53,6 +77,7 @@ export default class FoodItem extends React.Component {
   }
   render() {
     const { value } = this.state
+    const foodItems = this.state.results.map(item => Object.assign({label: item.food_name}))
     return (
       <Grid
         container
@@ -72,6 +97,7 @@ export default class FoodItem extends React.Component {
               value={value}
               onChange={this.handleChange}>
             </TextField>
+            <Select options={foodItems} onChange={this.handleFoodChange} value={value} placeholder="Select a food item"/>
           </FormGroup>
           <FormControl className="mt-4">
             <Input
@@ -82,9 +108,6 @@ export default class FoodItem extends React.Component {
           </FormControl>
           <div className="mt-4 text-center">
             <Button color="primary">Save</Button>
-          </div>
-          <div className="mt-4">
-            <Suggestions results={this.state.results}/>
           </div>
         </Form>
       </Grid>
