@@ -25,6 +25,7 @@ export default class App extends React.Component {
       foodItems: [],
       meals: [],
       date: today,
+      favorites: [],
       view: { path, params }
     }
     this.addBudget = this.addBudget.bind(this)
