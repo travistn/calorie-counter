@@ -20,6 +20,9 @@ const styles = {
   },
   card: {
     width: '15rem'
+  },
+  favorite: {
+    color: 'gray'
   }
 }
 
@@ -53,7 +56,9 @@ export default function FoodItemsList({ foodList, deleteOnClick }) {
             return (
               <Card className="m-4 shadow sm border-light" style={styles.card} key={index}>
                 <CardBody>
-                  <CardText className="text-center h6 text-danger">Looks good!</CardText>
+                  <CardText className="text-center h6 text-danger">Looks good!
+                    <i className="far fa-star ml-3" style={styles.favorite}></i>
+                  </CardText>
                   <CardText className="mt-2" style={styles.font}>{item.foodName}
                     <span className="text-primary float-right">
                       <i className="far fa-times-circle"
