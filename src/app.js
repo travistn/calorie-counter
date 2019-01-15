@@ -14,8 +14,6 @@ let date = require('date-and-time')
 let now = new Date()
 const today = date.format(now, 'YYYY-MM-DD')
 
-const key = 'appId=78710bc1&appKey=6198d4d14f69acc0e05e814d6bb55423'
-
 export default class App extends React.Component {
   constructor(props) {
     super(props)
@@ -35,6 +33,7 @@ export default class App extends React.Component {
     this.recordMeal = this.recordMeal.bind(this)
     this.deleteMeal = this.deleteMeal.bind(this)
     this.editBudget = this.editBudget.bind(this)
+    this.addFavorite = this.addFavorite.bind(this)
   }
   addBudget(newUser) {
     const req = {
@@ -140,6 +139,18 @@ export default class App extends React.Component {
         location.hash = '#home'
       })
   }
+  addFavorite(item) {
+    const req = {
+      method: 'POST',
+      body: JSON.stringify(item),
+      headers: { 'Content-Type': 'application/json' }
+    }
+    return fetch('/favorites', req)
+      .then(res => res.json())
+      .then(favorites => {
+        this.setState({ favorites })
+      })
+  }
   renderView() {
     const { path, params } = this.state.view
     const { user, foodItems, meals, date } = this.state
@@ -148,7 +159,7 @@ export default class App extends React.Component {
       case 'add-food-item':
         return <FoodItem onSubmit={this.addFoodItem}/>
       case 'list-of-food-items':
-        return <FoodItemsList foodList={foodItems} deleteOnClick={this.deleteItem}/>
+        return <FoodItemsList foodList={foodItems} deleteOnClick={this.deleteItem} addFavorite={this.addFavorite}/>
       case 'edit-food-item':
         const foodItem = foodItems.find(item => item.id === parseInt(params.id, 10))
         return <EditFoodItem item={foodItem} onSubmit={this.editFoodItem}/>

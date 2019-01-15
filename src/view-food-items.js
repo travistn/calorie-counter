@@ -57,7 +57,7 @@ export default function FoodItemsList({ foodList, deleteOnClick }) {
               <Card className="m-4 shadow sm border-light" style={styles.card} key={index}>
                 <CardBody>
                   <CardText className="text-center h6 text-danger">Looks good!
-                    <i className="far fa-star ml-3" style={styles.favorite}></i>
+                    <i className="far fa-star ml-3" style={styles.favorite} onClick={this.props.addFavorite}></i>
                   </CardText>
                   <CardText className="mt-2" style={styles.font}>{item.foodName}
                     <span className="text-primary float-right">
